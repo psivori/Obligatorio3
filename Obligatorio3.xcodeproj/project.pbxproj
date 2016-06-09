@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		8325B4731D0A1DBA00884D69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4721D0A1DBA00884D69 /* AppDelegate.swift */; };
-		8325B4751D0A1DBA00884D69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4741D0A1DBA00884D69 /* ViewController.swift */; };
+		8325B4751D0A1DBA00884D69 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4741D0A1DBA00884D69 /* HomeViewController.swift */; };
 		8325B4781D0A1DBA00884D69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8325B4761D0A1DBA00884D69 /* Main.storyboard */; };
 		8325B47A1D0A1DBA00884D69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8325B4791D0A1DBA00884D69 /* Assets.xcassets */; };
 		8325B47D1D0A1DBA00884D69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8325B47B1D0A1DBA00884D69 /* LaunchScreen.storyboard */; };
 		8325B4881D0A1DBA00884D69 /* Obligatorio3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4871D0A1DBA00884D69 /* Obligatorio3Tests.swift */; };
 		8325B4931D0A1DBA00884D69 /* Obligatorio3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4921D0A1DBA00884D69 /* Obligatorio3UITests.swift */; };
+		8325B4A51D0A258800884D69 /* LoginViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4A41D0A258800884D69 /* LoginViewControler.swift */; settings = {ASSET_TAGS = (); }; };
 		DAEDB15B454DB857B0D3CF81 /* Pods_Obligatorio3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C1B0C56948D23748D92814 /* Pods_Obligatorio3.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +38,7 @@
 /* Begin PBXFileReference section */
 		8325B46F1D0A1DBA00884D69 /* Obligatorio3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Obligatorio3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8325B4721D0A1DBA00884D69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8325B4741D0A1DBA00884D69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8325B4741D0A1DBA00884D69 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8325B4771D0A1DBA00884D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8325B4791D0A1DBA00884D69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8325B47C1D0A1DBA00884D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		8325B48E1D0A1DBA00884D69 /* Obligatorio3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Obligatorio3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8325B4921D0A1DBA00884D69 /* Obligatorio3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obligatorio3UITests.swift; sourceTree = "<group>"; };
 		8325B4941D0A1DBA00884D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8325B4A41D0A258800884D69 /* LoginViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControler.swift; sourceTree = "<group>"; };
 		AA9B8FAC42920868579A887E /* Pods-Obligatorio3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obligatorio3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Obligatorio3/Pods-Obligatorio3.release.xcconfig"; sourceTree = "<group>"; };
 		B9C1B0C56948D23748D92814 /* Pods_Obligatorio3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Obligatorio3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3C846F3204EA130E3C49C2 /* Pods-Obligatorio3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obligatorio3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Obligatorio3/Pods-Obligatorio3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,11 +124,12 @@
 			isa = PBXGroup;
 			children = (
 				8325B4721D0A1DBA00884D69 /* AppDelegate.swift */,
-				8325B4741D0A1DBA00884D69 /* ViewController.swift */,
+				8325B4741D0A1DBA00884D69 /* HomeViewController.swift */,
 				8325B4761D0A1DBA00884D69 /* Main.storyboard */,
 				8325B4791D0A1DBA00884D69 /* Assets.xcassets */,
 				8325B47B1D0A1DBA00884D69 /* LaunchScreen.storyboard */,
 				8325B47E1D0A1DBA00884D69 /* Info.plist */,
+				8325B4A41D0A258800884D69 /* LoginViewControler.swift */,
 			);
 			path = Obligatorio3;
 			sourceTree = "<group>";
@@ -330,8 +333,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8325B4751D0A1DBA00884D69 /* ViewController.swift in Sources */,
+				8325B4751D0A1DBA00884D69 /* HomeViewController.swift in Sources */,
 				8325B4731D0A1DBA00884D69 /* AppDelegate.swift in Sources */,
+				8325B4A51D0A258800884D69 /* LoginViewControler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
