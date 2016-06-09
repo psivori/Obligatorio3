@@ -1,0 +1,15 @@
+PODS:
+  - IQKeyboardManagerSwift (3.3.7)
+  - SwiftLocation (0.2.0)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift (~> 3.3)
+  - SwiftLocation (~> 0.2.0)
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: 7d06186460470f3f7e767630861a1303980ee5cf
+  SwiftLocation: ea78ae4a822581bde7379d98c8513273723c8840
+
+PODFILE CHECKSUM: 9ff0f4046120662a5f5efeb7ece28d04bf1c75a5
+
+COCOAPODS: 1.0.0
