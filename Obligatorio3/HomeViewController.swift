@@ -11,16 +11,18 @@ import UIKit
 class HomeViewController: UIViewController {
     
     let defaults = NSUserDefaults.standardUserDefaults()
-    
+    @IBOutlet weak var publishButton: UIBarButtonItem!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var email = defaults.stringForKey("Email")
-        var password = defaults.stringForKey("Password")
-        
-        if email == nil || password == nil{
-            self.performSegueWithIdentifier("toLogin", sender: nil)
+        var canPublish = !defaults.boolForKey("Fletero") //poner nombre en ingles
+        if canPublish {
+            navigationItem.rightBarButtonItems = [publishButton]
+        } else {
+            navigationItem.rightBarButtonItems = []
         }
+        
     }
     
     

@@ -17,6 +17,13 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //if user already logged in, goes to home page
+        var email = defaults.stringForKey("Email")
+        var password = defaults.stringForKey("Password")
+        if email != nil && password != nil{
+            self.performSegueWithIdentifier("toHome", sender: nil)
+        }
     }
 
     @IBAction func login(sender: AnyObject) {
@@ -26,12 +33,12 @@ class LoginViewController: UIViewController {
             defaults.setObject(email, forKey: "Email")
             defaults.setObject(password, forKey: "Password")
             defaults.setBool(false, forKey: "Fletero")
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.performSegueWithIdentifier("toHome", sender: nil)
         }else if email == "fletero@ucu.com" && password == "123"{
             defaults.setObject(email, forKey: "Email")
             defaults.setObject(password, forKey: "Password")
             defaults.setBool(true, forKey: "Fletero")
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.performSegueWithIdentifier("toHome", sender: nil)
         }else{
             let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
