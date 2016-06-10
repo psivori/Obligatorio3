@@ -5,36 +5,44 @@
     </dependencies>
     <scenes>
         <!--Publicaciones-->
-        <scene sceneID="7Ac-iO-8aj">
+        <scene sceneID="2uT-TM-Fp1">
             <objects>
-                <tableViewController title="Publicaciones" id="aRv-Xe-Egi" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nyx-10-BO7">
+                <viewController title="Publicaciones" id="Knj-Gg-VUY" customClass="HomeViewController" customModule="Obligatorio3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FT9-bU-URx"/>
+                        <viewControllerLayoutGuide type="bottom" id="HYJ-cF-pPK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="anW-Bw-Ug4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMJ-vf-g2Q">
+                                <rect key="frame" x="5" y="97" width="595" height="503"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="XR1-6X-akE">
+                                        <rect key="frame" x="0.0" y="92" width="595" height="67"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XR1-6X-akE" id="LWU-7l-FGf">
+                                            <rect key="frame" x="0.0" y="0.0" width="595" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="usS-FH-pga">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="usS-FH-pga" id="3RY-5d-VSH">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="aRv-Xe-Egi" id="P0L-KB-kIy"/>
-                            <outlet property="delegate" destination="aRv-Xe-Egi" id="q9h-aQ-ui8"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Publicaciones" id="pEB-Pz-8xX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Publicaciones" id="YAL-h6-g5M">
+                        <barButtonItem key="rightBarButtonItem" title="Publicar" id="QJT-qw-0r8"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" id="Ej4-PG-U3x"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toLogin" id="DfF-gC-ddc"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0zL-FZ-hch" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hs8-mt-RgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518" y="280"/>
+            <point key="canvasLocation" x="463" y="294"/>
         </scene>
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
@@ -48,27 +56,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Clave" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBT-Lb-hkc">
-                                <rect key="frame" x="215" y="285" width="170" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="2RV-gO-fXt"/>
-                                    <constraint firstAttribute="width" constant="196" id="5Dx-Nm-NYP"/>
-                                    <constraint firstAttribute="width" constant="170" id="vf7-SG-je0"/>
-                                    <constraint firstAttribute="height" constant="30" id="xaU-s6-DZg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2RV-gO-fXt"/>
-                                        <exclude reference="5Dx-Nm-NYP"/>
-                                        <exclude reference="xaU-s6-DZg"/>
-                                    </mask>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85w-8Q-bAp">
                                 <rect key="frame" x="272" y="350" width="56" height="30"/>
                                 <state key="normal" title="Ingresar"/>
+                                <connections>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kEf-rr-3sX"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Efr-Fp-rcK">
                                 <rect key="frame" x="215" y="230" width="170" height="30"/>
@@ -87,6 +80,24 @@
                                         <exclude reference="F9T-zb-jxn"/>
                                         <exclude reference="W9g-rZ-FXc"/>
                                         <exclude reference="flN-XT-NZz"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Clave" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBT-Lb-hkc">
+                                <rect key="frame" x="215" y="285" width="170" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2RV-gO-fXt"/>
+                                    <constraint firstAttribute="width" constant="196" id="5Dx-Nm-NYP"/>
+                                    <constraint firstAttribute="width" constant="170" id="vf7-SG-je0"/>
+                                    <constraint firstAttribute="height" constant="30" id="xaU-s6-DZg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2RV-gO-fXt"/>
+                                        <exclude reference="5Dx-Nm-NYP"/>
+                                        <exclude reference="xaU-s6-DZg"/>
                                     </mask>
                                 </variation>
                             </textField>
@@ -111,7 +122,7 @@
                     </view>
                     <connections>
                         <outlet property="emailInput" destination="Efr-Fp-rcK" id="fol-sX-vRM"/>
-                        <outlet property="passwordInput" destination="Cu0-I4-oGb" id="hjv-O5-5IZ"/>
+                        <outlet property="passwordInput" destination="sBT-Lb-hkc" id="i8j-Yd-EiJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -129,7 +140,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="aRv-Xe-Egi" kind="relationship" relationship="rootViewController" id="KLC-El-EFD"/>
+                        <segue destination="Knj-Gg-VUY" kind="relationship" relationship="rootViewController" id="VsO-Ic-WK5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECR-fI-gJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
