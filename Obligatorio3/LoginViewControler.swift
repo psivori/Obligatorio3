@@ -6,6 +6,7 @@
 //  Copyright © 2016 MICHO. All rights reserved.
 //
 import UIKit
+import IQKeyboardManagerSwift
 
 class LoginViewController: UIViewController {
     
@@ -17,6 +18,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        IQKeyboardManager.sharedManager().enable = true
         
         //if user already logged in, goes to home page
         var email = defaults.stringForKey("Email")
@@ -32,12 +35,12 @@ class LoginViewController: UIViewController {
         if email == "usuario@ucu.com" && password == "123"{
             defaults.setObject(email, forKey: "Email")
             defaults.setObject(password, forKey: "Password")
-            defaults.setBool(false, forKey: "Fletero")
+            defaults.setBool(false, forKey: "Courier")
             self.performSegueWithIdentifier("toHome", sender: nil)
         }else if email == "fletero@ucu.com" && password == "123"{
             defaults.setObject(email, forKey: "Email")
             defaults.setObject(password, forKey: "Password")
-            defaults.setBool(true, forKey: "Fletero")
+            defaults.setBool(true, forKey: "Courier")
             self.performSegueWithIdentifier("toHome", sender: nil)
         }else{
             let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)

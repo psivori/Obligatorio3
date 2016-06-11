@@ -15,6 +15,9 @@
 		8325B4881D0A1DBA00884D69 /* Obligatorio3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4871D0A1DBA00884D69 /* Obligatorio3Tests.swift */; };
 		8325B4931D0A1DBA00884D69 /* Obligatorio3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4921D0A1DBA00884D69 /* Obligatorio3UITests.swift */; };
 		8325B4A51D0A258800884D69 /* LoginViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4A41D0A258800884D69 /* LoginViewControler.swift */; settings = {ASSET_TAGS = (); }; };
+		8354D3631D0B89B8000278F9 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3621D0B89B8000278F9 /* Entry.swift */; settings = {ASSET_TAGS = (); }; };
+		8354D3651D0B9113000278F9 /* EntryViewCellCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */; settings = {ASSET_TAGS = (); }; };
+		8354D3671D0B9F37000278F9 /* SingleEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3661D0B9F37000278F9 /* SingleEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DAEDB15B454DB857B0D3CF81 /* Pods_Obligatorio3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C1B0C56948D23748D92814 /* Pods_Obligatorio3.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,9 @@
 		8325B4921D0A1DBA00884D69 /* Obligatorio3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obligatorio3UITests.swift; sourceTree = "<group>"; };
 		8325B4941D0A1DBA00884D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8325B4A41D0A258800884D69 /* LoginViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControler.swift; sourceTree = "<group>"; };
+		8354D3621D0B89B8000278F9 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewCellCustom.swift; sourceTree = "<group>"; };
+		8354D3661D0B9F37000278F9 /* SingleEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEntryViewController.swift; sourceTree = "<group>"; };
 		AA9B8FAC42920868579A887E /* Pods-Obligatorio3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obligatorio3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Obligatorio3/Pods-Obligatorio3.release.xcconfig"; sourceTree = "<group>"; };
 		B9C1B0C56948D23748D92814 /* Pods_Obligatorio3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Obligatorio3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3C846F3204EA130E3C49C2 /* Pods-Obligatorio3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obligatorio3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Obligatorio3/Pods-Obligatorio3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +136,9 @@
 				8325B47B1D0A1DBA00884D69 /* LaunchScreen.storyboard */,
 				8325B47E1D0A1DBA00884D69 /* Info.plist */,
 				8325B4A41D0A258800884D69 /* LoginViewControler.swift */,
+				8354D3621D0B89B8000278F9 /* Entry.swift */,
+				8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */,
+				8354D3661D0B9F37000278F9 /* SingleEntryViewController.swift */,
 			);
 			path = Obligatorio3;
 			sourceTree = "<group>";
@@ -333,8 +342,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8354D3631D0B89B8000278F9 /* Entry.swift in Sources */,
+				8354D3671D0B9F37000278F9 /* SingleEntryViewController.swift in Sources */,
 				8325B4751D0A1DBA00884D69 /* HomeViewController.swift in Sources */,
 				8325B4731D0A1DBA00884D69 /* AppDelegate.swift in Sources */,
+				8354D3651D0B9113000278F9 /* EntryViewCellCustom.swift in Sources */,
 				8325B4A51D0A258800884D69 /* LoginViewControler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
