@@ -32,12 +32,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
     
     
     func loadEntries() {
-        let entry1 = Entry(title: "Mudanza urgente", description : "Preciso trasladar todos los muebles de mi casa", originCoordinates : CLLocationCoordinate2D(latitude: 55, longitude: 50), destinationCoordinates : CLLocationCoordinate2D(latitude: 40, longitude: 80), date : "06/06/2016", state : "aceptado")
-        let entry2 = Entry(title: "Traslado de mercaderia", description : "Traslado para mercaderia de local comercial", originCoordinates : CLLocationCoordinate2D(latitude: 55, longitude: 50), destinationCoordinates : CLLocationCoordinate2D(latitude: 40, longitude: 80), date : "06/06/2016", state : "postulado")
+        let entry1 = Entry(title: "Mudanza urgente", description : "Preciso trasladar todos los muebles de mi casa", originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : "06/06/2016", state : "aceptado")
+        let entry2 = Entry(title: "Traslado de mercaderia", description : "Traslado para mercaderia de local comercial", originCoordinates : CLLocationCoordinate2D(latitude: 37.7773589, longitude: -122.408227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.508227), date : "06/06/2016", state : "postulado")
         entries += [entry1, entry2]
     }
-    
 
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

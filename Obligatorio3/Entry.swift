@@ -31,16 +31,14 @@ class Entry{
         //getting destination city name
         SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: destinationCoordinates, onSuccess: { (place) -> Void in
             self.destination = place!.locality
-            print(place!.locality)
             }) { (error) -> Void in
         }
         
         //getting origin city name
         SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: originCoordinates, onSuccess: { (place) -> Void in
             self.origin = place!.locality
-            print(place!.locality)
             }) { (error) -> Void in
         }
     }
-    
+
 }

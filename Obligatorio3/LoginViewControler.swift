@@ -13,7 +13,6 @@ class LoginViewController: UIViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet weak var emailInput: UITextField!
-    
     @IBOutlet weak var passwordInput: UITextField!
     
     override func viewDidLoad() {

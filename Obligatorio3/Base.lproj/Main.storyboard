@@ -187,6 +187,7 @@
                         <outlet property="entryDestination" destination="TJb-8s-fF4" id="Ilk-dE-Qbt"/>
                         <outlet property="entryOrigin" destination="baf-uR-0xT" id="Ikx-wc-iQP"/>
                         <outlet property="entryTitle" destination="Fem-qj-ST0" id="PQy-Qg-LTb"/>
+                        <outlet property="map" destination="l2D-yW-xbs" id="d57-sb-c5B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6e-E6-BI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
