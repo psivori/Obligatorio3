@@ -39,8 +39,37 @@ class SingleEntryViewController: UIViewController {
         objectAnnotationOri.title = "Origen"
         self.map.addAnnotation(objectAnnotationOri)
         //zoom
-        var span = MKCoordinateSpanMake(0.075, 0.075)
-        var region = MKCoordinateRegion(center: entry!.originCoordinates, span: span)
+
+        
+       // #define MAP_PADDING 1.1
+       // #define MINIMUM_VISIBLE_LATITUDE 0.01
+        var minLatitude : Double
+        var maxLatitude : Double
+        var minLongitude : Double
+        var maxLongitude : Double
+        if entry!.destinationCoordinates.latitude < entry!.originCoordinates.latitude{
+            minLatitude = entry!.destinationCoordinates.latitude
+            maxLatitude = entry!.originCoordinates.latitude
+        }else{
+            minLatitude = entry!.originCoordinates.latitude
+            maxLatitude = entry!.destinationCoordinates.latitude
+        }
+        if entry!.destinationCoordinates.longitude < entry!.originCoordinates.longitude{
+            minLongitude = entry!.destinationCoordinates.longitude
+            maxLongitude = entry!.originCoordinates.longitude
+        }else{
+            minLongitude = entry!.originCoordinates.longitude
+            maxLongitude = entry!.destinationCoordinates.longitude
+        }
+        var lat = (minLatitude + maxLatitude) / 2;
+        var lon = (minLongitude + maxLongitude) / 2;
+        var latitudeDelta = (maxLatitude - minLatitude) * 2;
+        if latitudeDelta < 0.01{
+            latitudeDelta = 0.01
+        }
+        var longitudeDelta = (maxLongitude - minLongitude) * 2;
+        var span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), span: span)
         self.map.setRegion(region, animated: true)
     }
 
