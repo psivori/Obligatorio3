@@ -12,6 +12,8 @@ import MapKit
 class SingleEntryViewController: UIViewController {
     
     var entry: Entry!
+    let defaults = NSUserDefaults.standardUserDefaults()
+    @IBOutlet weak var offerButton: UIBarButtonItem!
     @IBOutlet weak var entryTitle: UILabel!
     @IBOutlet weak var entryOrigin: UILabel!
     @IBOutlet weak var entryDate: UILabel!
@@ -21,6 +23,14 @@ class SingleEntryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var canOffer = defaults.boolForKey("Courier")
+        if canOffer {
+            navigationItem.rightBarButtonItems = [offerButton]
+        } else {
+            navigationItem.rightBarButtonItems = []
+        }
+        
         entryTitle.text = entry!.title
         entryOrigin.text = entry!.origin
         entryDestination.text = entry!.destination
