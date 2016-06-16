@@ -58,6 +58,9 @@ class SingleEntryViewController: UIViewController {
         let backItem = UIBarButtonItem()
         backItem.title = "Volver"
         navigationItem.backBarButtonItem = backItem
+        if let offerViewController = segue.destinationViewController as? OfferViewController{
+            offerViewController.entry = self.entry
+        }
     }
 
 }
