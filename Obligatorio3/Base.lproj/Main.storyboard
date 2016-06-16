@@ -538,6 +538,75 @@
             </objects>
             <point key="canvasLocation" x="1245" y="280"/>
         </scene>
+        <!--Publicaciones-->
+        <scene sceneID="iOf-Q1-e6u">
+            <objects>
+                <viewController title="Publicaciones" id="NbD-cf-bdc" customClass="HomeViewController" customModule="Obligatorio3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kdc-bj-lMW"/>
+                        <viewControllerLayoutGuide type="bottom" id="FRX-93-Agy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pUT-8S-be3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cuU-TV-4zM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryViewCellCustom" rowHeight="34" id="ptX-Kc-gQW" customClass="EntryViewCellCustom" customModule="Obligatorio3" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="34"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ptX-Kc-gQW" id="33M-Bb-R2S">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="33"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfH-S9-mwt">
+                                                    <rect key="frame" x="60" y="9" width="33" height="16"/>
+                                                    <color key="backgroundColor" red="0.70680390209999999" green="0.70680390209999999" blue="0.70680390209999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvZ-dl-ual">
+                                                    <rect key="frame" x="8" y="6" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
+                                            <constraints>
+                                                <constraint firstItem="PvZ-dl-ual" firstAttribute="leading" secondItem="33M-Bb-R2S" secondAttribute="leading" constant="8" id="1k5-nf-8AM"/>
+                                                <constraint firstItem="kfH-S9-mwt" firstAttribute="leading" secondItem="PvZ-dl-ual" secondAttribute="trailing" constant="10" id="79R-1E-qF3"/>
+                                                <constraint firstItem="kfH-S9-mwt" firstAttribute="top" secondItem="33M-Bb-R2S" secondAttribute="top" constant="9" id="e4U-Ny-Xig"/>
+                                                <constraint firstItem="PvZ-dl-ual" firstAttribute="top" secondItem="33M-Bb-R2S" secondAttribute="top" constant="6" id="oS4-RL-ZU5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="stateLabel" destination="kfH-S9-mwt" id="oGE-oV-mgc"/>
+                                            <outlet property="titleLabel" destination="PvZ-dl-ual" id="ddG-yx-I8I"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="NbD-cf-bdc" id="Dv4-Ou-7IE"/>
+                                    <outlet property="delegate" destination="NbD-cf-bdc" id="S7o-Zh-8cH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Publicaciones" id="IQA-5w-VCw">
+                        <barButtonItem key="rightBarButtonItem" title="Publicar" id="p5s-ns-kLP"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="publishButton" destination="p5s-ns-kLP" id="ItO-Hk-dMA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o3I-pW-0kT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2801" y="1050"/>
+        </scene>
     </scenes>
     <resources>
         <image name="pickApp3" width="250" height="200"/>

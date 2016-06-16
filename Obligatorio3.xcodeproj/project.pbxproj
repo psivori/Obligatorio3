@@ -15,6 +15,7 @@
 		8325B4881D0A1DBA00884D69 /* Obligatorio3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4871D0A1DBA00884D69 /* Obligatorio3Tests.swift */; };
 		8325B4931D0A1DBA00884D69 /* Obligatorio3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4921D0A1DBA00884D69 /* Obligatorio3UITests.swift */; };
 		8325B4A51D0A258800884D69 /* LoginViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325B4A41D0A258800884D69 /* LoginViewControler.swift */; settings = {ASSET_TAGS = (); }; };
+		834FB67C1D1348C500AAAF9B /* OffersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834FB67B1D1348C500AAAF9B /* OffersListViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8352832C1D1223B500DEB9FD /* PublishController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352832B1D1223B500DEB9FD /* PublishController.swift */; settings = {ASSET_TAGS = (); }; };
 		8354D3631D0B89B8000278F9 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3621D0B89B8000278F9 /* Entry.swift */; settings = {ASSET_TAGS = (); }; };
 		8354D3651D0B9113000278F9 /* EntryViewCellCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */; settings = {ASSET_TAGS = (); }; };
@@ -56,6 +57,7 @@
 		8325B4921D0A1DBA00884D69 /* Obligatorio3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obligatorio3UITests.swift; sourceTree = "<group>"; };
 		8325B4941D0A1DBA00884D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8325B4A41D0A258800884D69 /* LoginViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControler.swift; sourceTree = "<group>"; };
+		834FB67B1D1348C500AAAF9B /* OffersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersListViewController.swift; sourceTree = "<group>"; };
 		8352832B1D1223B500DEB9FD /* PublishController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishController.swift; sourceTree = "<group>"; };
 		8354D3621D0B89B8000278F9 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewCellCustom.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */,
 				8354D3661D0B9F37000278F9 /* SingleEntryViewController.swift */,
 				8365E11B1D1237BB00EFCBC2 /* OfferViewController.swift */,
+				834FB67B1D1348C500AAAF9B /* OffersListViewController.swift */,
 			);
 			path = Obligatorio3;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				8325B4751D0A1DBA00884D69 /* HomeViewController.swift in Sources */,
 				8325B4731D0A1DBA00884D69 /* AppDelegate.swift in Sources */,
 				8352832C1D1223B500DEB9FD /* PublishController.swift in Sources */,
+				834FB67C1D1348C500AAAF9B /* OffersListViewController.swift in Sources */,
 				8354D3651D0B9113000278F9 /* EntryViewCellCustom.swift in Sources */,
 				8325B4A51D0A258800884D69 /* LoginViewControler.swift in Sources */,
 			);
