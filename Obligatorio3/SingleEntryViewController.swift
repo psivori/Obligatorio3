@@ -12,6 +12,7 @@ import MapKit
 class SingleEntryViewController: UIViewController {
     
     var entry: Entry!
+    @IBOutlet weak var showOffers: UIBarButtonItem!
     let defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var offerButton: UIBarButtonItem!
     @IBOutlet weak var entryTitle: UILabel!
@@ -28,7 +29,7 @@ class SingleEntryViewController: UIViewController {
         if canOffer {
             navigationItem.rightBarButtonItems = [offerButton]
         } else {
-            navigationItem.rightBarButtonItems = []
+            navigationItem.rightBarButtonItems = [showOffers]
         }
         
         entryTitle.text = entry!.title

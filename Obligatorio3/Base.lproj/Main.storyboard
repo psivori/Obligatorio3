@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Publicaciones-->
@@ -312,11 +313,14 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="meL-eR-xHW">
-                        <barButtonItem key="rightBarButtonItem" title="Ofertar" id="AzI-m3-Qqh">
-                            <connections>
-                                <segue destination="SJS-Ip-e9r" kind="show" id="x7a-z5-I6a"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Ver Ofertas" id="zSa-FU-HwJ"/>
+                            <barButtonItem title="Ofertar" id="AzI-m3-Qqh">
+                                <connections>
+                                    <segue destination="SJS-Ip-e9r" kind="show" id="x7a-z5-I6a"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -327,6 +331,7 @@
                         <outlet property="entryTitle" destination="Fem-qj-ST0" id="PQy-Qg-LTb"/>
                         <outlet property="map" destination="l2D-yW-xbs" id="d57-sb-c5B"/>
                         <outlet property="offerButton" destination="AzI-m3-Qqh" id="82A-Of-cMb"/>
+                        <outlet property="showOffers" destination="zSa-FU-HwJ" id="CNy-H7-26g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6e-E6-BI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
