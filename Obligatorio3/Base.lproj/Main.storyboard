@@ -309,7 +309,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="meL-eR-xHW">
-                        <barButtonItem key="rightBarButtonItem" title="Ofertar" id="AzI-m3-Qqh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Ofertar" id="AzI-m3-Qqh">
+                            <connections>
+                                <segue destination="SJS-Ip-e9r" kind="show" id="x7a-z5-I6a"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -319,11 +323,83 @@
                         <outlet property="entryOrigin" destination="baf-uR-0xT" id="Ikx-wc-iQP"/>
                         <outlet property="entryTitle" destination="Fem-qj-ST0" id="PQy-Qg-LTb"/>
                         <outlet property="map" destination="l2D-yW-xbs" id="d57-sb-c5B"/>
+                        <outlet property="offerButton" destination="AzI-m3-Qqh" id="82A-Of-cMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6e-E6-BI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2801" y="280"/>
+        </scene>
+        <!--Oferta-->
+        <scene sceneID="dOf-Cn-3rK">
+            <objects>
+                <viewController title="Oferta" id="SJS-Ip-e9r" customClass="OfferViewController" customModule="Obligatorio3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4eQ-8x-JcO"/>
+                        <viewControllerLayoutGuide type="bottom" id="ejF-8i-nr4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wwb-XR-FxV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presupuesto:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pq-M2-5TO">
+                                <rect key="frame" x="20" y="124" width="101" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDU-yf-0Cn">
+                                <rect key="frame" x="20" y="155" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWu-Ns-C3w">
+                                <rect key="frame" x="129" y="120" width="160" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="TTc-Id-J9N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qOa-b0-KS2">
+                                <rect key="frame" x="20" y="184" width="560" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="6yW-9c-GeI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Pq-M2-5TO" firstAttribute="leading" secondItem="Wwb-XR-FxV" secondAttribute="leading" constant="20" id="F1e-Iy-qKF"/>
+                            <constraint firstItem="rDU-yf-0Cn" firstAttribute="top" secondItem="3Pq-M2-5TO" secondAttribute="bottom" constant="10" id="GR8-kk-DHB"/>
+                            <constraint firstItem="rDU-yf-0Cn" firstAttribute="leading" secondItem="Wwb-XR-FxV" secondAttribute="leading" constant="20" id="MXE-IP-ecr"/>
+                            <constraint firstItem="oWu-Ns-C3w" firstAttribute="top" secondItem="4eQ-8x-JcO" secondAttribute="bottom" constant="56" id="TnE-uC-5FZ"/>
+                            <constraint firstItem="qOa-b0-KS2" firstAttribute="top" secondItem="rDU-yf-0Cn" secondAttribute="bottom" constant="8" id="W1V-oq-NZf"/>
+                            <constraint firstAttribute="trailing" secondItem="qOa-b0-KS2" secondAttribute="trailing" constant="20" id="a2P-0d-jG3"/>
+                            <constraint firstItem="qOa-b0-KS2" firstAttribute="leading" secondItem="Wwb-XR-FxV" secondAttribute="leading" constant="20" id="acw-23-x0b"/>
+                            <constraint firstItem="oWu-Ns-C3w" firstAttribute="leading" secondItem="3Pq-M2-5TO" secondAttribute="trailing" constant="8" id="eyh-Jp-LZG"/>
+                            <constraint firstItem="3Pq-M2-5TO" firstAttribute="top" secondItem="4eQ-8x-JcO" secondAttribute="bottom" constant="60" id="tWP-wF-zUo"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Oferta" id="UUw-80-58X">
+                        <barButtonItem key="rightBarButtonItem" title="Enviar" id="IN2-5h-fzk">
+                            <connections>
+                                <action selector="sendOffer:" destination="SJS-Ip-e9r" id="CZG-Xq-gYT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="budget" destination="oWu-Ns-C3w" id="IdK-t1-gn9"/>
+                        <outlet property="txtDescription" destination="qOa-b0-KS2" id="TpO-2P-Oja"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ch-6e-ErY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3551" y="280"/>
         </scene>
         <!--Login-->
         <scene sceneID="tne-QT-ifu">

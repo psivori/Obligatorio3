@@ -52,5 +52,11 @@ class SingleEntryViewController: UIViewController {
         var region = MapUtils.getRegion(entry!.originCoordinates, destinationCoordinates: entry!.destinationCoordinates)
         self.map.setRegion(region, animated: true)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Volver"
+        navigationItem.backBarButtonItem = backItem
+    }
 
 }

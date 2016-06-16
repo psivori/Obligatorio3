@@ -68,11 +68,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Volver"
+        navigationItem.backBarButtonItem = backItem
         if let singleEntryViewController = segue.destinationViewController as? SingleEntryViewController{
             singleEntryViewController.entry = selectedEntry
         }
     }
-    
 
     
 }
