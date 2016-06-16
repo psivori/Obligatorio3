@@ -4,7 +4,7 @@
 //
 //  Created by Administrador on 9/6/16.
 //  Copyright © 2016 MICHO. All rights reserved.
-//
+//usuario@ucu.com
 
 import UIKit
 import IQKeyboardManagerSwift
@@ -18,6 +18,22 @@ class PublishController: UIViewController {
     @IBOutlet weak var txtDescription: UITextView!
     var window: UIWindow?
     
+    @IBAction func btnPublish(sender: AnyObject) {
+        
+        var refreshAlert = UIAlertController(title: "Publicar", message: "Esta seguro que desea publicar el viaje.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Si", style: .Default, handler: { (action: UIAlertAction!) in
+            navigationController?.popToRootViewControllerAnimated(true)
+            //self.dismissViewControllerAnimated(true, completion: {})
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
     @IBAction func textFieldEditing(sender: UITextField) {
         
         let datePickerView:UIDatePicker = UIDatePicker()
