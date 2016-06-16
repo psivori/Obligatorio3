@@ -33,22 +33,28 @@ class OfferViewController: UIViewController {
         entryOrigin.text = entry!.origin
         entryDestination.text = entry!.destination
         entryDate.text = entry!.date
+        
     }
     
     @IBAction func sendOffer(sender: AnyObject) {
-        var refreshAlert = UIAlertController(title: "", message: "¿Enviar oferta?", preferredStyle: UIAlertControllerStyle.Alert)
-        refreshAlert.addAction(UIAlertAction(title: "Sí", style: .Default, handler: { (action: UIAlertAction!) in
-            //GUARDAR LA OFERTA
-            let alert2 = UIAlertController(title: nil, message: "Oferta enviada.", preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
-                navigationController?.popToRootViewControllerAnimated(true)
-            }
-            alert2.addAction(okAction)
-            self.presentViewController(alert2, animated: true, completion: nil)
-        }))
-        refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action: UIAlertAction!) in }))
-        presentViewController(refreshAlert, animated: true, completion: nil)
-
+        if budget.text != "" && txtDescription.text != "" {
+            var refreshAlert = UIAlertController(title: "", message: "¿Enviar oferta?", preferredStyle: UIAlertControllerStyle.Alert)
+            refreshAlert.addAction(UIAlertAction(title: "Sí", style: .Default, handler: { (action: UIAlertAction!) in
+                //GUARDAR LA OFERTA
+                let alert2 = UIAlertController(title: nil, message: "Oferta enviada.", preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
+                    navigationController?.popToRootViewControllerAnimated(true)
+                }
+                alert2.addAction(okAction)
+                self.presentViewController(alert2, animated: true, completion: nil)
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action: UIAlertAction!) in }))
+            presentViewController(refreshAlert, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: nil, message: "Complete los datos.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
         
     }
 }
