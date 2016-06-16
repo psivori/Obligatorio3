@@ -18,6 +18,7 @@
 		8354D3631D0B89B8000278F9 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3621D0B89B8000278F9 /* Entry.swift */; settings = {ASSET_TAGS = (); }; };
 		8354D3651D0B9113000278F9 /* EntryViewCellCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */; settings = {ASSET_TAGS = (); }; };
 		8354D3671D0B9F37000278F9 /* SingleEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354D3661D0B9F37000278F9 /* SingleEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8365E11A1D12268600EFCBC2 /* MapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365E1191D12268600EFCBC2 /* MapUtils.swift */; settings = {ASSET_TAGS = (); }; };
 		DAEDB15B454DB857B0D3CF81 /* Pods_Obligatorio3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C1B0C56948D23748D92814 /* Pods_Obligatorio3.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		8354D3621D0B89B8000278F9 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		8354D3641D0B9113000278F9 /* EntryViewCellCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewCellCustom.swift; sourceTree = "<group>"; };
 		8354D3661D0B9F37000278F9 /* SingleEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEntryViewController.swift; sourceTree = "<group>"; };
+		8365E1191D12268600EFCBC2 /* MapUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUtils.swift; sourceTree = "<group>"; };
 		AA9B8FAC42920868579A887E /* Pods-Obligatorio3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obligatorio3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Obligatorio3/Pods-Obligatorio3.release.xcconfig"; sourceTree = "<group>"; };
 		B9C1B0C56948D23748D92814 /* Pods_Obligatorio3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Obligatorio3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3C846F3204EA130E3C49C2 /* Pods-Obligatorio3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obligatorio3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Obligatorio3/Pods-Obligatorio3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		8325B4711D0A1DBA00884D69 /* Obligatorio3 */ = {
 			isa = PBXGroup;
 			children = (
+				8365E1181D12267500EFCBC2 /* Utils */,
 				8325B4721D0A1DBA00884D69 /* AppDelegate.swift */,
 				8325B4741D0A1DBA00884D69 /* HomeViewController.swift */,
 				8325B4761D0A1DBA00884D69 /* Main.storyboard */,
@@ -159,6 +162,14 @@
 				8325B4941D0A1DBA00884D69 /* Info.plist */,
 			);
 			path = Obligatorio3UITests;
+			sourceTree = "<group>";
+		};
+		8365E1181D12267500EFCBC2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8365E1191D12268600EFCBC2 /* MapUtils.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +355,7 @@
 			files = (
 				8354D3631D0B89B8000278F9 /* Entry.swift in Sources */,
 				8354D3671D0B9F37000278F9 /* SingleEntryViewController.swift in Sources */,
+				8365E11A1D12268600EFCBC2 /* MapUtils.swift in Sources */,
 				8325B4751D0A1DBA00884D69 /* HomeViewController.swift in Sources */,
 				8325B4731D0A1DBA00884D69 /* AppDelegate.swift in Sources */,
 				8354D3651D0B9113000278F9 /* EntryViewCellCustom.swift in Sources */,
