@@ -187,8 +187,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Ajustes" id="d3z-UM-dsM">
-                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="9O0-ht-lI4"/>
-                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="9lz-9X-iBk"/>
+                        <barButtonItem key="rightBarButtonItem" title="Publicar" id="9lz-9X-iBk">
+                            <connections>
+                                <action selector="btnPublish:" destination="xbl-mL-B38" id="wQs-mS-fKf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dateTextField" destination="ktA-si-pyg" id="YFY-DT-INM"/>
@@ -198,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="499-oa-pM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2008" y="-484"/>
+            <point key="canvasLocation" x="2801" y="-434"/>
         </scene>
         <!--Single Entry View Controller-->
         <scene sceneID="F0d-Kf-LUP">
