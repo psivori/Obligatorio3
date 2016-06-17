@@ -7,6 +7,8 @@
 //
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
+
 
 class LoginViewController: UIViewController {
     
@@ -24,11 +26,39 @@ class LoginViewController: UIViewController {
         var email = defaults.stringForKey("Email")
         var password = defaults.stringForKey("Password")
         if email != nil && password != nil{
-            self.performSegueWithIdentifier("toHome", sender: nil)
+            //self.performSegueWithIdentifier("toHome", sender: nil)
         }
+        
+//        //Saving the offer into Firebase
+//        var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
+//        var offersRef = myRootRef.childByAppendingPath("users")
+////        var offer = ["name": "cliente", "tipo": 1, "user": "usuario@ucu.com", "password": "123"]
+////        let offerRef = offersRef.childByAutoId()
+//        var offer = ["name": "fletero", "tipo": 2, "user": "fletero@ucu.com", "password": "321"]
+//        let offerRef = offersRef.childByAutoId()
+//        offerRef.setValue(offer)
+        
+        
+        
+        
     }
 
     @IBAction func login(sender: AnyObject) {
+        
+        var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/users")
+        myRootRef.observeEventType(.Value, withBlock: {
+            snapshot in
+            
+            for child in snapshot.children {
+                if let w = child.value!!.objectForKey("name") as? String {
+                    print(w)
+                }
+            }
+        
+        })
+        
+        
+        
         var email = emailInput.text
         var password = passwordInput.text
         if email == "usuario@ucu.com" && password == "123"{

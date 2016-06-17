@@ -92,19 +92,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrz-ic-Adw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Titulo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrz-ic-Adw">
                                 <rect key="frame" x="40" y="60" width="48" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origen y Destino:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asJ-Tc-3Wc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Origen y Destino:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asJ-Tc-3Wc">
                                 <rect key="frame" x="40" y="101" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nl7-49-IyB">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nl7-49-IyB">
                                 <rect key="frame" x="126" y="60" width="190" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="513-o2-IrZ"/>
@@ -149,7 +149,7 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ydL-cC-8Eh">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ydL-cC-8Eh">
                                 <rect key="frame" x="40" y="130" width="520" height="275"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="pgB-YZ-8Ib"/>
@@ -473,16 +473,16 @@
                                 <exclude reference="DKz-hd-gJB"/>
                                 <exclude reference="JCu-V7-D5Z"/>
                                 <exclude reference="tqA-TN-sVR"/>
+                                <exclude reference="IJU-MU-Wj8"/>
+                                <exclude reference="qcX-D4-uoy"/>
                                 <exclude reference="DWB-T5-iJT"/>
                                 <exclude reference="YcR-qX-ghq"/>
                                 <exclude reference="pWG-Hu-2tq"/>
                                 <exclude reference="qTJ-WT-9R4"/>
-                                <exclude reference="IJU-MU-Wj8"/>
-                                <exclude reference="qcX-D4-uoy"/>
-                                <exclude reference="eWN-de-sDB"/>
-                                <exclude reference="x4n-KC-pb1"/>
                                 <exclude reference="SJe-Tz-n5W"/>
                                 <exclude reference="XI7-Ok-rRg"/>
+                                <exclude reference="eWN-de-sDB"/>
+                                <exclude reference="x4n-KC-pb1"/>
                                 <exclude reference="iAU-ow-nF3"/>
                                 <exclude reference="y87-mo-au9"/>
                                 <exclude reference="tWP-wF-zUo"/>
