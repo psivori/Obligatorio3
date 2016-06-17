@@ -8,4 +8,5 @@ target 'Obligatorio3’ do
   # Pods for Obligatorio3
   pod ‘SwiftLocation’, '~> 0.2.0’
   pod 'IQKeyboardManagerSwift', '~> 3.3’
+  pod 'Firebase'
 end
