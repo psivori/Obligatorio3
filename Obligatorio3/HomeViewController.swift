@@ -12,6 +12,7 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UITableViewDataSource {
     
     let defaults = NSUserDefaults.standardUserDefaults()
+    
     @IBOutlet weak var publishButton: UIBarButtonItem!
     var entries = [Entry]()
     var selectedEntry: Entry?
