@@ -43,5 +43,6 @@ class MapUtils {
         var span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
         return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), span: span)
     }
-
+    
 }
+

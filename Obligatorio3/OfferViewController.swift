@@ -8,7 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-
+import Firebase
 
 class OfferViewController: UIViewController {
     
@@ -19,6 +19,7 @@ class OfferViewController: UIViewController {
     @IBOutlet weak var entryOrigin: UILabel!
     @IBOutlet weak var entryDestination: UILabel!
     @IBOutlet weak var entryDate: UILabel!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,13 @@ class OfferViewController: UIViewController {
         if budget.text != "" && txtDescription.text != "" {
             var refreshAlert = UIAlertController(title: "", message: "¿Enviar oferta?", preferredStyle: UIAlertControllerStyle.Alert)
             refreshAlert.addAction(UIAlertAction(title: "Sí", style: .Default, handler: { (action: UIAlertAction!) in
-                //GUARDAR LA OFERTA
+                //Saving the offer into Firebase
+                var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
+                var offersRef = myRootRef.childByAppendingPath("offers")
+                var offer = ["budget": self.budget.text, "description": self.txtDescription.text]
+                let offerRef = offersRef.childByAutoId()
+                offerRef.setValue(offer)
+                
                 let alert2 = UIAlertController(title: nil, message: "Oferta enviada.", preferredStyle: UIAlertControllerStyle.Alert)
                 let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
                     navigationController?.popToRootViewControllerAnimated(true)
