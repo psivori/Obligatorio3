@@ -196,6 +196,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateTextField" destination="ktA-si-pyg" id="YFY-DT-INM"/>
+                        <outlet property="entryTitle" destination="Nl7-49-IyB" id="6ox-9J-2qf"/>
                         <outlet property="map" destination="ydL-cC-8Eh" id="uER-f0-kzf"/>
                         <outlet property="txtDescription" destination="dHP-S0-iuf" id="pWU-Xx-wBG"/>
                     </connections>
