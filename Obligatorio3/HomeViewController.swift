@@ -8,6 +8,7 @@
 
 import MapKit
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UITableViewDataSource {
     
@@ -30,11 +31,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        //loadEntries()
+    }
+    
     
     func loadEntries() {
-        let entry1 = Entry(title: "Mudanza urgente", description : "Preciso trasladar todos los muebles de mi casa", originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : "06/06/2016", state : "aceptado")
-        let entry2 = Entry(title: "Traslado de mercaderia", description : "Traslado para mercaderia de local comercial", originCoordinates : CLLocationCoordinate2D(latitude: 37.7773589, longitude: -122.408227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.508227), date : "06/06/2016", state : "postulado")
-        entries += [entry1, entry2]
+        var ref = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/entries")
+        ref.queryOrderedByChild("title").observeEventType(.ChildAdded, withBlock: { snapshot in
+            if var title = snapshot.value["title"] as? String {
+                var des = snapshot.value["description"] as? String
+                var dte = snapshot.value["date"] as? String
+                var entry = Entry(title: title, description : des!, originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : dte!, state : "aceptado")
+                self.entries.append(entry)
+                //self.collectionView.reloadData()
+            }
+        })
+        
     }
 
     

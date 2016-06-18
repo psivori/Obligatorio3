@@ -196,6 +196,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateTextField" destination="ktA-si-pyg" id="YFY-DT-INM"/>
+                        <outlet property="entryTitle" destination="Nl7-49-IyB" id="6ox-9J-2qf"/>
                         <outlet property="map" destination="ydL-cC-8Eh" id="uER-f0-kzf"/>
                         <outlet property="txtDescription" destination="dHP-S0-iuf" id="pWU-Xx-wBG"/>
                     </connections>
@@ -469,16 +470,16 @@
                                 <exclude reference="DKz-hd-gJB"/>
                                 <exclude reference="JCu-V7-D5Z"/>
                                 <exclude reference="tqA-TN-sVR"/>
+                                <exclude reference="IJU-MU-Wj8"/>
+                                <exclude reference="qcX-D4-uoy"/>
                                 <exclude reference="DWB-T5-iJT"/>
                                 <exclude reference="YcR-qX-ghq"/>
                                 <exclude reference="pWG-Hu-2tq"/>
                                 <exclude reference="qTJ-WT-9R4"/>
-                                <exclude reference="IJU-MU-Wj8"/>
-                                <exclude reference="qcX-D4-uoy"/>
-                                <exclude reference="eWN-de-sDB"/>
-                                <exclude reference="x4n-KC-pb1"/>
                                 <exclude reference="SJe-Tz-n5W"/>
                                 <exclude reference="XI7-Ok-rRg"/>
+                                <exclude reference="eWN-de-sDB"/>
+                                <exclude reference="x4n-KC-pb1"/>
                                 <exclude reference="iAU-ow-nF3"/>
                                 <exclude reference="y87-mo-au9"/>
                                 <exclude reference="tWP-wF-zUo"/>
