@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
     let defaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet weak var publishButton: UIBarButtonItem!
+    @IBOutlet weak var tableView: UITableView!
     var entries = [Entry]()
     var selectedEntry: Entry?
     
@@ -27,13 +28,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
         } else {
             navigationItem.rightBarButtonItems = []
         }
-        //getting entries to show on table view
-        loadEntries()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
-        //loadEntries()
+        entries.removeAll()
+        loadEntries()
     }
     
     
@@ -45,7 +44,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
                 var dte = snapshot.value["date"] as? String
                 var entry = Entry(title: title, description : des!, originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : dte!, state : "aceptado")
                 self.entries.append(entry)
-                //self.collectionView.reloadData()
+                self.tableView.reloadData()
             }
         })
         
