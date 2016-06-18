@@ -4,7 +4,7 @@
 //
 //  Created by Administrador on 15/4/16.
 //  Copyright © 2016 MICHO. All rights reserved.
-//
+//usuario@ucu.com
 import UIKit
 import IQKeyboardManagerSwift
 import Firebase
@@ -16,6 +16,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
+    var currentUser :String?
+    var currentPassword : String?
+    var currentUserType :String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +32,13 @@ class LoginViewController: UIViewController {
             //self.performSegueWithIdentifier("toHome", sender: nil)
         }
         
-//        //Saving the offer into Firebase
+        //Saving the offer into Firebase
 //        var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
 //        var offersRef = myRootRef.childByAppendingPath("users")
 ////        var offer = ["name": "cliente", "tipo": 1, "user": "usuario@ucu.com", "password": "123"]
 ////        let offerRef = offersRef.childByAutoId()
 //        var offer = ["name": "fletero", "tipo": 2, "user": "fletero@ucu.com", "password": "321"]
-//        let offerRef = offersRef.childByAutoId()
+//        let offerRef = offersRef.childByAppendingPath("usuario")()
 //        offerRef.setValue(offer)
         
         
@@ -45,37 +48,68 @@ class LoginViewController: UIViewController {
 
     @IBAction func login(sender: AnyObject) {
         
+        var flag : Bool = false
         var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/users")
-        myRootRef.observeEventType(.Value, withBlock: {
-            snapshot in
+        myRootRef.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
             
-            for child in snapshot.children {
-                if let w = child.value!!.objectForKey("name") as? String {
-                    print(w)
+            if var mail = snapshot.value["user"] as? String {
+                
+                if(mail == self.emailInput.text)
+                {
+                    self.currentUser = mail
+                    self.currentPassword = snapshot.value["password"] as? String
+                    self.currentUserType = snapshot.value["type"] as? String
+                    flag = true
                 }
             }
         
+            }, withCancelBlock: { error in
+                print(error.description)
+                
         })
         
         
+        if (flag){
         
-        var email = emailInput.text
-        var password = passwordInput.text
-        if email == "usuario@ucu.com" && password == "123"{
-            defaults.setObject(email, forKey: "Email")
-            defaults.setObject(password, forKey: "Password")
-            defaults.setBool(false, forKey: "Courier")
-            self.performSegueWithIdentifier("toHome", sender: nil)
-        }else if email == "fletero@ucu.com" && password == "123"{
-            defaults.setObject(email, forKey: "Email")
-            defaults.setObject(password, forKey: "Password")
-            defaults.setBool(true, forKey: "Courier")
-            self.performSegueWithIdentifier("toHome", sender: nil)
+            if(self.currentUserType == "1"){
+            
+                defaults.setObject(self.currentUser, forKey: "Email")
+                defaults.setObject(self.currentPassword, forKey: "Password")
+                defaults.setBool(false, forKey: "Courier")
+                self.performSegueWithIdentifier("toHome", sender: nil)
+                
+            }else if(self.currentUserType == "2"){
+                
+                defaults.setObject(self.currentUser, forKey: "Email")
+                defaults.setObject(self.currentPassword, forKey: "Password")
+                defaults.setBool(true, forKey: "Courier")
+                self.performSegueWithIdentifier("toHome", sender: nil)
+            }
+            
         }else{
+            
             let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+        
+//        var email = self.currentUser//emailInput.text
+//        var password = self.currentPassword//passwordInput.text
+//        if email == "usuario@ucu.com" && password == "123"{
+//            defaults.setObject(email, forKey: "Email")
+//            defaults.setObject(password, forKey: "Password")
+//            defaults.setBool(false, forKey: "Courier")
+//            self.performSegueWithIdentifier("toHome", sender: nil)
+//        }else if email == "fletero@ucu.com" && password == "123"{
+//            defaults.setObject(email, forKey: "Email")
+//            defaults.setObject(password, forKey: "Password")
+//            defaults.setBool(true, forKey: "Courier")
+//            self.performSegueWithIdentifier("toHome", sender: nil)
+//        }else{
+//            let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)
+//            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//        }
     }
     
 }
