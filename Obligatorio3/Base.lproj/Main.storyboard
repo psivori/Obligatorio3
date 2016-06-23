@@ -73,6 +73,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="publishButton" destination="ux4-4c-IZU" id="i6Y-5a-ikL"/>
+                        <outlet property="tableView" destination="GMJ-vf-g2Q" id="2qf-dG-rgL"/>
                         <segue destination="cGd-ma-7rK" kind="show" identifier="showEntry" id="HXE-Ke-Q6X"/>
                     </connections>
                 </viewController>
