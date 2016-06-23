@@ -55,6 +55,11 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         //zoom
         var region = MapUtils.getRegion(entry!.originCoordinates, destinationCoordinates: entry!.destinationCoordinates)
         self.map.setRegion(region, animated: true)
+        
+        //Border of map
+        self.map!.layer.borderWidth = 1
+        self.map!.layer.borderColor = UIColor.grayColor().CGColor
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

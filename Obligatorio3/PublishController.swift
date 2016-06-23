@@ -10,8 +10,9 @@ import UIKit
 import IQKeyboardManagerSwift
 import MapKit
 import Firebase
+import SwiftLocation
 
-class PublishController: UIViewController, UITextFieldDelegate {
+class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelegate{
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var dateTextField: UITextField!
@@ -62,7 +63,9 @@ class PublishController: UIViewController, UITextFieldDelegate {
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
         textField.inputView = datePickerView
+        
         datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        
         return true
     }
     
@@ -94,6 +97,67 @@ class PublishController: UIViewController, UITextFieldDelegate {
         
         IQKeyboardManager.sharedManager().enable = true
         
+        
+        
+        
+        
+        
     }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(true)
+        do {
+            
+            try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
+                var lat :String
+                var lng :String
+
+                lat = String(location!.coordinate.latitude)
+                lng = String(location!.coordinate.longitude)
+                
+                var currentLocation = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lng)!)
+                
+                //MAP INFO
+                self.map.delegate = self
+                //origin pin
+                var objectAnnotationDest = MKPointAnnotation()
+                objectAnnotationDest.coordinate = currentLocation
+                objectAnnotationDest.title = "Origen"
+                self.map.addAnnotation(objectAnnotationDest)
+                //zoom
+                var region = MapUtils.getRegion(currentLocation, destinationCoordinates: currentLocation)
+                self.map.setRegion(region, animated: true)
+
+            
+                }) { (error) -> Void in
+                    // something went wrong
+                    //self.activityIndicator.stopAnimating()
+                    let alertController = UIAlertController(title: "Error", message:
+                        error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
+            }
+
+        }catch {
+            //self.activityIndicator.stopAnimating()
+            let alertController = UIAlertController(title: "Error", message:
+                "Error getting current location", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        
+        //Border of map
+        self.map!.layer.borderWidth = 1
+        self.map!.layer.borderColor = UIColor.grayColor().CGColor
+
+        
+    }
+    
+    
+    
+    
     
 }
