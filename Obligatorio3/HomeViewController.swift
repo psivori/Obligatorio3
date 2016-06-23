@@ -18,16 +18,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
     @IBOutlet weak var tableView: UITableView!
     var entries = [Entry]()
     var selectedEntry: Entry?
-    
+    var email : String!
+    var courier : Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
         //shows or hides de publish button, according to profile user
-        var canPublish = !defaults.boolForKey("Courier")
-        if canPublish {
+        email = defaults.stringForKey("Email")
+        courier = !defaults.boolForKey("Courier")
+        if !courier {
             navigationItem.rightBarButtonItems = [publishButton]
         } else {
             navigationItem.rightBarButtonItems = []
         }
+       
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -35,16 +38,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
         loadEntries()
     }
     
-    
     func loadEntries() {
         var ref = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/entries")
-        ref.queryOrderedByChild("title").observeEventType(.ChildAdded, withBlock: { snapshot in
-            if var title = snapshot.value["title"] as? String {
-                var des = snapshot.value["description"] as? String
-                var dte = snapshot.value["date"] as? String
-                var entry = Entry(title: title, description : des!, originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : dte!, state : "aceptado")
-                self.entries.append(entry)
-                self.tableView.reloadData()
+        ref.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
+            if var user = snapshot.value["user"] as? String {
+                //if courier || user == self.email {
+                    var tit = snapshot.value["title"] as! String
+                    var des = snapshot.value["description"] as? String
+                    var dte = snapshot.value["date"] as? String
+                    var entry = Entry(title: tit, description : des!, originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : dte!, state : "aceptado")
+                    self.entries.append(entry)
+                    self.tableView.reloadData()
+                //}
             }
         })
         

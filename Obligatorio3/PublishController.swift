@@ -18,6 +18,7 @@ class PublishController: UIViewController {
     @IBOutlet weak var txtDescription: UITextView!
     @IBOutlet weak var entryTitle: UITextField!
     var window: UIWindow?
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     @IBAction func btnPublish(sender: AnyObject) {
         var refreshAlert = UIAlertController(title: "Publicar", message: "¿Está seguro que desea publicar el viaje?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -25,7 +26,7 @@ class PublishController: UIViewController {
             //saving entry on Firebase
             var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
             var entriesRef = myRootRef.childByAppendingPath("entries")
-            var entry = ["title": self.entryTitle.text, "date": self.dateTextField.text, "description": self.txtDescription.text]
+            var entry = ["title": self.entryTitle.text, "date": self.dateTextField.text, "description": self.txtDescription.text, "user": self.defaults.stringForKey("Email")]
             let entryRef = entriesRef.childByAutoId()
             entryRef.setValue(entry)
             //confirmation alert
