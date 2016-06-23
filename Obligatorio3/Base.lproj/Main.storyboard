@@ -134,6 +134,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldEditing:" destination="xbl-mL-B38" eventType="editingDidEnd" id="BWr-OF-eWx"/>
+                                    <outlet property="delegate" destination="xbl-mL-B38" id="ubH-Pg-rQ2"/>
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-S0-iuf">

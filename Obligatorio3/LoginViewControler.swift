@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         var email = defaults.stringForKey("Email")
         var password = defaults.stringForKey("Password")
         if email != nil && password != nil{
-            //self.performSegueWithIdentifier("toHome", sender: nil)
+            self.performSegueWithIdentifier("toHome", sender: nil)
         }
         
         //Saving the offer into Firebase
@@ -53,6 +53,7 @@ class LoginViewController: UIViewController {
         var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/users")
         myRootRef.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
             
+            cont += 1
             if var mail = snapshot.value["user"] as? String {
                 
                 if(mail == self.emailInput.text)
@@ -62,31 +63,34 @@ class LoginViewController: UIViewController {
                     self.currentUserType = snapshot.value["tipo"] as? Int
                     ///flag = true
                     
-                    if(self.currentUserType == 1){
+                    if(self.currentUserType == 1 && self.currentPassword == self.passwordInput.text!){
+                        
+                        self.defaults.setObject(self.currentUser, forKey: "Email")
+                        self.defaults.setObject(self.currentPassword, forKey: "Password")
+                        self.defaults.setBool(true, forKey: "Courier")
+                        self.performSegueWithIdentifier("toHome", sender: nil)
+                        
+                    }else if(self.currentUserType == 2 && self.currentPassword == self.passwordInput.text!){
                         
                         self.defaults.setObject(self.currentUser, forKey: "Email")
                         self.defaults.setObject(self.currentPassword, forKey: "Password")
                         self.defaults.setBool(false, forKey: "Courier")
                         self.performSegueWithIdentifier("toHome", sender: nil)
                         
-                    }else if(self.currentUserType == 2){
+                    }else if(cont == 2){
                         
-                        self.defaults.setObject(self.currentUser, forKey: "Email")
-                        self.defaults.setObject(self.currentPassword, forKey: "Password")
-                        self.defaults.setBool(true, forKey: "Courier")
-                        self.performSegueWithIdentifier("toHome", sender: nil)
+                        let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
                 }else
                 {
-                    cont += 1
                     if(cont == 2)
                     {
                         let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
-                    
-                    }
-                
+                    }               
                     
                 }
             }

@@ -11,7 +11,7 @@ import IQKeyboardManagerSwift
 import MapKit
 import Firebase
 
-class PublishController: UIViewController {
+class PublishController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var dateTextField: UITextField!
@@ -40,21 +40,31 @@ class PublishController: UIViewController {
         refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action: UIAlertAction!) in }))
         presentViewController(refreshAlert, animated: true, completion: nil)
     }
+
     
     @IBAction func textFieldEditing(sender: UITextField) {
+        
+//        let datePickerView:UIDatePicker = UIDatePicker()
+//        
+//        datePickerView.datePickerMode = UIDatePickerMode.Date
+//        
+//        sender.inputView = datePickerView
+        
+        //self.dateTextField.addTarget(self, action: #selector(ViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
+        //http://stackoverflow.com/questions/28394933/how-do-i-check-when-a-uitextfield-changes
+        
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         
         let datePickerView:UIDatePicker = UIDatePicker()
         
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
-        sender.inputView = datePickerView
-        
-        //self.dateTextField.addTarget(self, action: #selector(ViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-        //http://stackoverflow.com/questions/28394933/how-do-i-check-when-a-uitextfield-changes
-        self.dateTextField.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        textField.inputView = datePickerView
+        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        return true
     }
-    
-    
     
     func datePickerValueChanged(sender:UIDatePicker) {
         
