@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordInput: UITextField!
     var currentUser :String?
     var currentPassword : String?
-    var currentUserType :String?
+    var currentUserType :Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,8 @@ class LoginViewController: UIViewController {
 
     @IBAction func login(sender: AnyObject) {
         
-        var flag : Bool = false
+        //var flag : Bool = false
+        var cont : Int = 0
         var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/users")
         myRootRef.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
             
@@ -58,8 +59,35 @@ class LoginViewController: UIViewController {
                 {
                     self.currentUser = mail
                     self.currentPassword = snapshot.value["password"] as? String
-                    self.currentUserType = snapshot.value["type"] as? String
-                    flag = true
+                    self.currentUserType = snapshot.value["tipo"] as? Int
+                    ///flag = true
+                    
+                    if(self.currentUserType == 1){
+                        
+                        self.defaults.setObject(self.currentUser, forKey: "Email")
+                        self.defaults.setObject(self.currentPassword, forKey: "Password")
+                        self.defaults.setBool(false, forKey: "Courier")
+                        self.performSegueWithIdentifier("toHome", sender: nil)
+                        
+                    }else if(self.currentUserType == 2){
+                        
+                        self.defaults.setObject(self.currentUser, forKey: "Email")
+                        self.defaults.setObject(self.currentPassword, forKey: "Password")
+                        self.defaults.setBool(true, forKey: "Courier")
+                        self.performSegueWithIdentifier("toHome", sender: nil)
+                    }
+                }else
+                {
+                    cont += 1
+                    if(cont == 2)
+                    {
+                        let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    }
+                
+                    
                 }
             }
         
@@ -68,7 +96,7 @@ class LoginViewController: UIViewController {
                 
         })
         
-        
+        /*
         if (flag){
         
             if(self.currentUserType == "1"){
@@ -91,7 +119,7 @@ class LoginViewController: UIViewController {
             let alert = UIAlertController(title: nil, message: "Credenciales incorrectas", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-        }
+        }*/
         
 //        var email = self.currentUser//emailInput.text
 //        var password = self.currentPassword//passwordInput.text
