@@ -41,6 +41,64 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
         refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action: UIAlertAction!) in }))
         presentViewController(refreshAlert, animated: true, completion: nil)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(true)
+        do {
+            
+            try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
+                var lat :String
+                var lng :String
+                
+                lat = String(location!.coordinate.latitude)
+                lng = String(location!.coordinate.longitude)
+                
+                var currentLocation = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lng)!)
+                
+                //MAP INFO
+                //self.map.delegate = self
+                //origin pin
+                //Codigo Viejo
+//                var objectAnnotationDest = MKPointAnnotation()
+//                objectAnnotationDest.coordinate = currentLocation
+//                objectAnnotationDest.title = "Origen"
+                
+                let objectAnnotationDest = ColorPointAnnotation(pinColor: UIColor.redColor())
+                objectAnnotationDest.coordinate = currentLocation
+                objectAnnotationDest.title = "Origen"
+                
+                
+                self.map.addAnnotation(objectAnnotationDest)
+                //zoom
+                var region = MapUtils.getRegion(currentLocation, destinationCoordinates: currentLocation)
+                self.map.setRegion(region, animated: true)
+                
+                
+                }) { (error) -> Void in
+                    // something went wrong
+                    //self.activityIndicator.stopAnimating()
+                    let alertController = UIAlertController(title: "Error", message:
+                        error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            
+        }catch {
+            //self.activityIndicator.stopAnimating()
+            let alertController = UIAlertController(title: "Error", message:
+                "Error getting current location", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        
+        //Border of map
+        self.map!.layer.borderWidth = 1
+        self.map!.layer.borderColor = UIColor.grayColor().CGColor
+        
+        
+    }
 
     
     @IBAction func textFieldEditing(sender: UITextField) {
@@ -97,67 +155,168 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
         
         IQKeyboardManager.sharedManager().enable = true
         
+        //setting selected location
         
+        let longPressed = UILongPressGestureRecognizer(target: self, action:"addAnnotation:")
+        longPressed.minimumPressDuration = 0.5
+        self.map.addGestureRecognizer(longPressed)
         
-        
-        
+        self.map.delegate = self
         
     }
     
-    
-    override func viewDidAppear(animated: Bool) {
+    func addAnnotation(sender:UILongPressGestureRecognizer){
         
-        super.viewDidAppear(true)
-        do {
+        if sender.state == UIGestureRecognizerState.Began {
+            //let allAnnotations = self.map.annotations
             
-            try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
-                var lat :String
-                var lng :String
-
-                lat = String(location!.coordinate.latitude)
-                lng = String(location!.coordinate.longitude)
-                
-                var currentLocation = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lng)!)
-                
-                //MAP INFO
-                self.map.delegate = self
-                //origin pin
-                var objectAnnotationDest = MKPointAnnotation()
-                objectAnnotationDest.coordinate = currentLocation
-                objectAnnotationDest.title = "Origen"
-                self.map.addAnnotation(objectAnnotationDest)
-                //zoom
-                var region = MapUtils.getRegion(currentLocation, destinationCoordinates: currentLocation)
-                self.map.setRegion(region, animated: true)
-
+            let allOverlays = self.map.overlays
+            self.map.removeOverlays(allOverlays)
             
-                }) { (error) -> Void in
-                    // something went wrong
-                    //self.activityIndicator.stopAnimating()
-                    let alertController = UIAlertController(title: "Error", message:
-                        error?.description, preferredStyle: UIAlertControllerStyle.Alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-                    self.presentViewController(alertController, animated: true, completion: nil)
+            let point = sender.locationInView(self.map)
+            let coord:CLLocationCoordinate2D = self.map.convertPoint(point, toCoordinateFromView: self.map)
+            
+            let annotationDestino = self.map.annotations
+            var annotationForDelete : MKAnnotation!
+            var annotationOrigen : MKAnnotation!
+            for annot in annotationDestino{
+            
+                
+                if(annot.title! != "Origen"){
+                    annotationForDelete = annot
+                    self.map.removeAnnotation(annotationForDelete)
+                }else{
+                    annotationOrigen = annot
+                }
             }
 
-        }catch {
-            //self.activityIndicator.stopAnimating()
-            let alertController = UIAlertController(title: "Error", message:
-                "Error getting current location", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            let sourceLocation = CLLocationCoordinate2D(latitude: annotationOrigen.coordinate.latitude, longitude: annotationOrigen.coordinate.longitude)
+            let destinationLocation = CLLocationCoordinate2D(latitude: coord.latitude,longitude: coord.longitude)
+            // 3.
+            let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+            let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+            // 4.
+            let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+            let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+            
+            // 7.
+            let directionRequest = MKDirectionsRequest()
+            directionRequest.source = sourceMapItem
+            directionRequest.destination = destinationMapItem
+            directionRequest.transportType = .Automobile
+            
+            // Calculate the direction
+            let directions = MKDirections(request: directionRequest)
+            
+            
+            
+            // 8.
+            directions.calculateDirectionsWithCompletionHandler {
+                (response, error) -> Void in
+                
+                guard let response = response else {
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
+                    
+                    return
+                }
+                
+                let route = response.routes[0]
+                self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
+                
+                //let rect = route.polyline.boundingMapRect
+                //self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+            }
+            
+            
+//            let locations = [CLLocation(latitude: annotationOrigen.coordinate.latitude, longitude: annotationOrigen.coordinate.longitude), CLLocation(latitude: coord.latitude,longitude: coord.longitude)]
+//            var coordinates = locations.map({(location: CLLocation) -> CLLocationCoordinate2D in return location.coordinate})
+//            var polyline = MKPolyline(coordinates: &coordinates, count: locations.count)
+//           
+//            self.map.addOverlay(polyline, level: MKOverlayLevel.AboveRoads)
+            
+            
+            //Codigoviejo
+            //let annotation = MKPointAnnotation()
+            //annotation.coordinate = coord
+            
+            let annotation = ColorPointAnnotation(pinColor: UIColor.blueColor())
+            annotation.coordinate = coord
+            annotation.title = "Destino"
+                        
+            self.map.addAnnotation(annotation)
+            
         }
-        
-        
-        //Border of map
-        self.map!.layer.borderWidth = 1
-        self.map!.layer.borderColor = UIColor.grayColor().CGColor
-
-        
     }
-    
-    
     
     
     
 }
+
+class ColorPointAnnotation: MKPointAnnotation {
+    var pinColor: UIColor = UIColor.greenColor()
+    
+    init(pinColor: UIColor) {
+        self.pinColor = pinColor
+        super.init()
+    }
+}
+
+extension PublishController {
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+//        if annotation is MKPointAnnotation {
+//            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
+//            
+//            pinAnnotationView.pinColor = .Green
+//            pinAnnotationView.draggable = true
+//            pinAnnotationView.canShowCallout = true
+//            pinAnnotationView.animatesDrop = true
+//            
+//            return pinAnnotationView
+//        }
+//        
+//        return nil
+        
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            
+            let colorPointAnnotation = annotation as! ColorPointAnnotation
+            pinView?.pinTintColor = colorPointAnnotation.pinColor
+            pinView?.draggable = true
+            pinView?.canShowCallout = true
+            pinView?.animatesDrop = true
+        }
+        else {
+            pinView?.annotation = annotation
+        }
+        
+        return pinView
+        
+    }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        if overlay.isKindOfClass(MKPolyline) {
+            // draw the track
+            let polyLine = overlay
+            let polyLineRenderer = MKPolylineRenderer(overlay: polyLine)
+            polyLineRenderer.strokeColor = UIColor.blueColor()
+            polyLineRenderer.lineWidth = 2.0
+            
+            return polyLineRenderer
+        }
+        return MKPolylineRenderer()
+        
+        
+    }
+}
+
