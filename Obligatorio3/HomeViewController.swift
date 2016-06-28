@@ -46,7 +46,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
                     var tit = snapshot.value["title"] as! String
                     var des = snapshot.value["description"] as? String
                     var dte = snapshot.value["date"] as? String
-                    var entry = Entry(title: tit, description : des!, originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : dte!, state : "aceptado")
+                    var destinationCoordLat = Double (snapshot.value["destinationCoordLat"] as! String)
+                    var destinationCoordLng = Double (snapshot.value["destinationCoordLng"] as! String)
+                    var originCoordLat = Double (snapshot.value["originCoordLat"] as! String)
+                    var originCoordLng = Double (snapshot.value["originCoordLng"] as! String)
+                    var state = snapshot.value["state"] as! String
+                
+                    let sourceLocation = CLLocationCoordinate2D(latitude: originCoordLat!, longitude: originCoordLng!)
+                    let destinationLocation = CLLocationCoordinate2D(latitude: destinationCoordLat! ,longitude: destinationCoordLng!)
+                
+                    //var entry = Entry(title: tit, description : des!, originCoordinates : CLLocationCoordinate2D(latitude: 37.8873589, longitude: -122.608227), destinationCoordinates : CLLocationCoordinate2D(latitude: 37.7873589, longitude: -122.408227), date : dte!, state : "aceptado")
+                     var entry = Entry(title: tit, description : des!, originCoordinates : sourceLocation, destinationCoordinates :destinationLocation, date : dte!, state : state)
+                
                     self.entries.append(entry)
                     self.tableView.reloadData()
                 //}

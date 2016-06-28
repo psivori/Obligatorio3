@@ -24,10 +24,33 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
     @IBAction func btnPublish(sender: AnyObject) {
         var refreshAlert = UIAlertController(title: "Publicar", message: "¿Está seguro que desea publicar el viaje?", preferredStyle: UIAlertControllerStyle.Alert)
         refreshAlert.addAction(UIAlertAction(title: "Si", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //Coordinates
+            var annotation = self.map.annotations
+            var destinationCoordLat :String = ""
+            var destinationCoordLng :String = ""
+            
+            var originCoordLat :String = ""
+            var originCoordLng :String = ""
+            
+            for annot in annotation{
+                
+                if(annot.title! != "Origen"){
+                    
+                    destinationCoordLat = String(format:"%f", annot.coordinate.latitude)
+                    destinationCoordLng = String(format:"%f", annot.coordinate.longitude)
+                }else{
+                    
+                    originCoordLat = String(format:"%f", annot.coordinate.latitude)
+                    originCoordLng = String(format:"%f", annot.coordinate.longitude)
+                }
+            }
+            
+            
             //saving entry on Firebase
             var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
             var entriesRef = myRootRef.childByAppendingPath("entries")
-            var entry = ["title": self.entryTitle.text, "date": self.dateTextField.text, "description": self.txtDescription.text, "user": self.defaults.stringForKey("Email")]
+            var entry = ["title": self.entryTitle.text, "date": self.dateTextField.text, "description": self.txtDescription.text, "user": self.defaults.stringForKey("Email"), "destinationCoordLat": destinationCoordLat, "destinationCoordLng": destinationCoordLng, "originCoordLat": originCoordLat, "originCoordLng": originCoordLng, "state": "Pendiente"]
             let entryRef = entriesRef.childByAutoId()
             entryRef.setValue(entry)
             //confirmation alert
@@ -170,6 +193,7 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
         if sender.state == UIGestureRecognizerState.Began {
             //let allAnnotations = self.map.annotations
             
+            //clear route
             let allOverlays = self.map.overlays
             self.map.removeOverlays(allOverlays)
             
@@ -180,7 +204,6 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
             var annotationForDelete : MKAnnotation!
             var annotationOrigen : MKAnnotation!
             for annot in annotationDestino{
-            
                 
                 if(annot.title! != "Origen"){
                     annotationForDelete = annot
@@ -225,22 +248,20 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
                 
                 let route = response.routes[0]
                 self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
-                
                 //let rect = route.polyline.boundingMapRect
                 //self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
             }
             
-            
-//            let locations = [CLLocation(latitude: annotationOrigen.coordinate.latitude, longitude: annotationOrigen.coordinate.longitude), CLLocation(latitude: coord.latitude,longitude: coord.longitude)]
-//            var coordinates = locations.map({(location: CLLocation) -> CLLocationCoordinate2D in return location.coordinate})
-//            var polyline = MKPolyline(coordinates: &coordinates, count: locations.count)
-//           
-//            self.map.addOverlay(polyline, level: MKOverlayLevel.AboveRoads)
-            
-            
             //Codigoviejo
             //let annotation = MKPointAnnotation()
             //annotation.coordinate = coord
+            
+            ////save coordinate in memory to use it when pin is dragged
+            //self.defaults.setObject(annotationOrigen.coordinate.latitude, forKey: "CoordinateOriginLat")
+            //self.defaults.setObject(annotationOrigen.coordinate.longitude, forKey: "CoordinateOriginLng")
+            //self.defaults.setObject(coord.latitude, forKey: "CoordinateDestinyLat")
+            //self.defaults.setObject(coord.longitude, forKey: "CoordinateDestinyLng")
+            
             
             let annotation = ColorPointAnnotation(pinColor: UIColor.blueColor())
             annotation.coordinate = coord
@@ -262,6 +283,7 @@ class ColorPointAnnotation: MKPointAnnotation {
         self.pinColor = pinColor
         super.init()
     }
+    
 }
 
 extension PublishController {
@@ -318,5 +340,75 @@ extension PublishController {
         
         
     }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        if newState == MKAnnotationViewDragState.Ending {
+            
+            //let droppedAt = view.annotation?.coordinate
+            //print(droppedAt)
+            
+            //Get annotations
+            let annotation = self.map.annotations
+            if(annotation.count > 1){
+                
+                
+                //clear route
+                let allOverlays = self.map.overlays
+                self.map.removeOverlays(allOverlays)
+                
+                var annotationOrigin : MKAnnotation!
+                var annotationDestiny : MKAnnotation!
+                for annot in annotation{
+                    if(annot.title! != "Origen"){
+                        annotationDestiny = annot
+                    }else{
+                        annotationOrigin = annot
+                    }
+                }
+                
+                let sourceLocation = CLLocationCoordinate2D(latitude: annotationOrigin.coordinate.latitude, longitude: annotationOrigin.coordinate.longitude)
+                let destinationLocation = CLLocationCoordinate2D(latitude: annotationDestiny.coordinate.latitude,longitude: annotationDestiny.coordinate.longitude)
+                // 3.
+                let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+                let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+                // 4.
+                let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+                let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+                
+                // 7.
+                let directionRequest = MKDirectionsRequest()
+                directionRequest.source = sourceMapItem
+                directionRequest.destination = destinationMapItem
+                directionRequest.transportType = .Automobile
+                
+                // Calculate the direction
+                let directions = MKDirections(request: directionRequest)
+                
+                
+                
+                // 8.
+                directions.calculateDirectionsWithCompletionHandler {
+                    (response, error) -> Void in
+                    
+                    guard let response = response else {
+                        if let error = error {
+                            print("Error: \(error)")
+                        }
+                        
+                        return
+                    }
+                    
+                    let route = response.routes[0]
+                    self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
+                    //let rect = route.polyline.boundingMapRect
+                    //self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+                }
+                
+            }
+            
+            
+        }
+    }
+    
 }
 

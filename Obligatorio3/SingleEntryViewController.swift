@@ -40,18 +40,62 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         
         //MAP INFO
         map.delegate = self
-        //destination pin
-        var objectAnnotationDest = MKPointAnnotation()
-        objectAnnotationDest.coordinate = entry!.destinationCoordinates
-        objectAnnotationDest.title = "Destino"
-        self.map.addAnnotation(objectAnnotationDest)
+//        //destination pin
+//        var objectAnnotationDest = MKPointAnnotation()
+//        objectAnnotationDest.coordinate = entry!.destinationCoordinates
+//        objectAnnotationDest.title = "Destino"
+//        self.map.addAnnotation(objectAnnotationDest)
         
         //origin pin
-        var objectAnnotationOri = MKPointAnnotation()
-        //let objectAnnotationOri = ColorPointAnnotation(pinColor: UIColor.blueColor())
+        //var objectAnnotationOri = MKPointAnnotation()
+        let objectAnnotationOri = ColorPointAnnotation(pinColor: UIColor.redColor())
         objectAnnotationOri.coordinate = entry!.originCoordinates
         objectAnnotationOri.title = "Origen"
         self.map.addAnnotation(objectAnnotationOri)
+        
+        
+        let objectAnnotationDestiny = ColorPointAnnotation(pinColor: UIColor.blueColor())
+        objectAnnotationDestiny.coordinate = entry!.destinationCoordinates
+        objectAnnotationDestiny.title = "Destino"
+        
+        self.map.addAnnotation(objectAnnotationDestiny)
+        
+        let sourceLocation = CLLocationCoordinate2D(latitude: objectAnnotationOri.coordinate.latitude, longitude: objectAnnotationOri.coordinate.longitude)
+        let destinationLocation = CLLocationCoordinate2D(latitude: objectAnnotationDestiny.coordinate.latitude,longitude: objectAnnotationDestiny.coordinate.longitude)
+        // 3.
+        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+        // 4.
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        // 7.
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .Automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        
+        
+        // 8.
+        directions.calculateDirectionsWithCompletionHandler {
+            (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
+        }
+        
         //zoom
         var region = MapUtils.getRegion(entry!.originCoordinates, destinationCoordinates: entry!.destinationCoordinates)
         self.map.setRegion(region, animated: true)
@@ -70,6 +114,62 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
             offerViewController.entry = self.entry
         }
     }
+    
+    
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        //        if annotation is MKPointAnnotation {
+        //            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
+        //
+        //            pinAnnotationView.pinColor = .Green
+        //            pinAnnotationView.draggable = true
+        //            pinAnnotationView.canShowCallout = true
+        //            pinAnnotationView.animatesDrop = true
+        //
+        //            return pinAnnotationView
+        //        }
+        //
+        //        return nil
+        
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            
+            let colorPointAnnotation = annotation as! ColorPointAnnotation
+            pinView?.pinTintColor = colorPointAnnotation.pinColor
+            pinView?.canShowCallout = true
+            pinView?.animatesDrop = true
+        }
+        else {
+            pinView?.annotation = annotation
+        }
+        
+        return pinView
+        
+    }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        if overlay.isKindOfClass(MKPolyline) {
+            // draw the track
+            let polyLine = overlay
+            let polyLineRenderer = MKPolylineRenderer(overlay: polyLine)
+            polyLineRenderer.strokeColor = UIColor.blueColor()
+            polyLineRenderer.lineWidth = 2.0
+            
+            return polyLineRenderer
+        }
+        return MKPolylineRenderer()
+        
+        
+    }
+    
     
 //    class ColorPointAnnotation: MKPointAnnotation {
 //        var pinColor: UIColor
@@ -99,3 +199,5 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
 //    }
 
 }
+
+
