@@ -705,7 +705,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Publicaciones" id="IQA-5w-VCw"/>
+                    <navigationItem key="navigationItem" title="Ofertas" id="IQA-5w-VCw"/>
                     <connections>
                         <segue destination="Doe-vj-jCj" kind="show" identifier="showOfferDetails" id="c8W-iR-dHh"/>
                     </connections>
