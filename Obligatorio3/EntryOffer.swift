@@ -10,19 +10,14 @@ import Foundation
 
 class EntryOffer{
     
-    var title : String
+    var description : String
     var name : String
-    var lastName : String?
-    var price : String?
-    var details : String
+    var budget : String?
 
-
-    init(title : String, name : String, lastName : String, price : String, details : String){
+    init(description : String, name : String, budget : String){
         self.name = name
-        self.title = title
-        self.lastName = lastName
-        self.price = price
-        self.details = details
+        self.description = description
+        self.budget = budget
        
         }
 

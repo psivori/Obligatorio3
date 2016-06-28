@@ -1,24 +1,38 @@
 import MapKit
 import UIKit
+import Firebase
 
 class OffersListViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UITableViewDataSource {
     
     let defaults = NSUserDefaults.standardUserDefaults()    
     var entries = [EntryOffer]()
     var selectedEntry: EntryOffer?
+    var entry: Entry!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getting entries to show on table view
-        loadEntries()
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        entries.removeAll()
+        loadOffers()
+    }
     
-    func loadEntries() {
-        let entry1 = EntryOffer(title: "Te lo LLevo", name: "Maicol", lastName: "Diaz", price: "$1500", details: "LLevo todo calidad de confianza")
-        let entry2 = EntryOffer(title: "Ahorra plata", name: "Jose", lastName: "Rastrilla", price: "$1200", details: "con 1 peon")
-        entries += [entry1, entry2]
+    func loadOffers() {
+        var ref = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/offers")
+        ref.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
+            if var entryId = snapshot.value["entryId"] as? String {
+                if entryId == self.entry.id {
+                    var budget = snapshot.value["budget"] as! String
+                    var des = snapshot.value["description"] as! String
+                    var name = self.defaults.stringForKey("Name")!
+                    var offer = EntryOffer(description : des, name : name, budget : budget)
+                    self.entries.append(offer)
+                    //self.tableView.reloadData()
+                }
+            }
+        })
     }
     
     
@@ -40,7 +54,7 @@ class OffersListViewController: UIViewController, UITableViewDelegate, UIScrollV
         // Fetches the appropriate meal for the data source layout.
         let entry = entries[indexPath.row]
         cell.titleLable.text = entry.name
-        cell.priceLable.text = " " + entry.price! + " "
+        cell.priceLable.text = " " + entry.budget! + " "
         return cell
     }
     

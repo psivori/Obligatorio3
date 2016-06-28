@@ -22,31 +22,25 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
     let defaults = NSUserDefaults.standardUserDefaults()
     
     @IBAction func btnPublish(sender: AnyObject) {
-        var refreshAlert = UIAlertController(title: "Publicar", message: "¿Está seguro que desea publicar el viaje?", preferredStyle: UIAlertControllerStyle.Alert)
-        refreshAlert.addAction(UIAlertAction(title: "Si", style: .Default, handler: { (action: UIAlertAction!) in
-            
-            //Coordinates
-            var annotation = self.map.annotations
-            var destinationCoordLat :String = ""
-            var destinationCoordLng :String = ""
-            
-            var originCoordLat :String = ""
-            var originCoordLng :String = ""
-            
-            for annot in annotation{
-                
-                if(annot.title! != "Origen"){
-                    
-                    destinationCoordLat = String(format:"%f", annot.coordinate.latitude)
-                    destinationCoordLng = String(format:"%f", annot.coordinate.longitude)
-                }else{
-                    
-                    originCoordLat = String(format:"%f", annot.coordinate.latitude)
-                    originCoordLng = String(format:"%f", annot.coordinate.longitude)
-                }
+        //Coordinates
+        var annotation = self.map.annotations
+        var destinationCoordLat :String = ""
+        var destinationCoordLng :String = ""
+        var originCoordLat :String = ""
+        var originCoordLng :String = ""
+        for annot in annotation{
+            if(annot.title! != "Origen"){
+                destinationCoordLat = String(format:"%f", annot.coordinate.latitude)
+                destinationCoordLng = String(format:"%f", annot.coordinate.longitude)
+            }else{
+                originCoordLat = String(format:"%f", annot.coordinate.latitude)
+                originCoordLng = String(format:"%f", annot.coordinate.longitude)
             }
-            
-            
+        }
+        if entryTitle.text != "" && dateTextField.text != "" && txtDescription.text != "" && destinationCoordLat != "" && destinationCoordLng != "" && originCoordLat != "" && originCoordLng != ""{
+            var refreshAlert = UIAlertController(title: "Publicar", message: "¿Está seguro que desea publicar el viaje?", preferredStyle: UIAlertControllerStyle.Alert)
+            refreshAlert.addAction(UIAlertAction(title: "Si", style: .Default, handler: { (action: UIAlertAction!) in
+ 
             //saving entry on Firebase
             var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
             var entriesRef = myRootRef.childByAppendingPath("entries")
@@ -60,9 +54,14 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
             }
             alert2.addAction(okAction)
             self.presentViewController(alert2, animated: true, completion: nil)
-        }))
-        refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action: UIAlertAction!) in }))
-        presentViewController(refreshAlert, animated: true, completion: nil)
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action: UIAlertAction!) in }))
+            presentViewController(refreshAlert, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: nil, message: "Complete los datos.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -79,13 +78,6 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
                 
                 var currentLocation = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lng)!)
                 
-                //MAP INFO
-                //self.map.delegate = self
-                //origin pin
-                //Codigo Viejo
-//                var objectAnnotationDest = MKPointAnnotation()
-//                objectAnnotationDest.coordinate = currentLocation
-//                objectAnnotationDest.title = "Origen"
                 
                 let objectAnnotationDest = ColorPointAnnotation(pinColor: UIColor.redColor())
                 objectAnnotationDest.coordinate = currentLocation
@@ -123,20 +115,6 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
         
     }
 
-    
-    @IBAction func textFieldEditing(sender: UITextField) {
-        
-//        let datePickerView:UIDatePicker = UIDatePicker()
-//        
-//        datePickerView.datePickerMode = UIDatePickerMode.Date
-//        
-//        sender.inputView = datePickerView
-        
-        //self.dateTextField.addTarget(self, action: #selector(ViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-        //http://stackoverflow.com/questions/28394933/how-do-i-check-when-a-uitextfield-changes
-        
-    }
-    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         
         let datePickerView:UIDatePicker = UIDatePicker()
@@ -248,21 +226,8 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
                 
                 let route = response.routes[0]
                 self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
-                //let rect = route.polyline.boundingMapRect
-                //self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
             }
-            
-            //Codigoviejo
-            //let annotation = MKPointAnnotation()
-            //annotation.coordinate = coord
-            
-            ////save coordinate in memory to use it when pin is dragged
-            //self.defaults.setObject(annotationOrigen.coordinate.latitude, forKey: "CoordinateOriginLat")
-            //self.defaults.setObject(annotationOrigen.coordinate.longitude, forKey: "CoordinateOriginLng")
-            //self.defaults.setObject(coord.latitude, forKey: "CoordinateDestinyLat")
-            //self.defaults.setObject(coord.longitude, forKey: "CoordinateDestinyLng")
-            
-            
+
             let annotation = ColorPointAnnotation(pinColor: UIColor.blueColor())
             annotation.coordinate = coord
             annotation.title = "Destino"
@@ -288,20 +253,6 @@ class ColorPointAnnotation: MKPointAnnotation {
 
 extension PublishController {
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-//        if annotation is MKPointAnnotation {
-//            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
-//            
-//            pinAnnotationView.pinColor = .Green
-//            pinAnnotationView.draggable = true
-//            pinAnnotationView.canShowCallout = true
-//            pinAnnotationView.animatesDrop = true
-//            
-//            return pinAnnotationView
-//        }
-//        
-//        return nil
-        
-        
         if annotation is MKUserLocation {
             return nil
         }
@@ -384,8 +335,6 @@ extension PublishController {
                 // Calculate the direction
                 let directions = MKDirections(request: directionRequest)
                 
-                
-                
                 // 8.
                 directions.calculateDirectionsWithCompletionHandler {
                     (response, error) -> Void in
@@ -397,11 +346,8 @@ extension PublishController {
                         
                         return
                     }
-                    
                     let route = response.routes[0]
                     self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
-                    //let rect = route.polyline.boundingMapRect
-                    //self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
                 }
                 
             }

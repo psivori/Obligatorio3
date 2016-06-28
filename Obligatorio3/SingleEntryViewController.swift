@@ -40,14 +40,6 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         
         //MAP INFO
         map.delegate = self
-//        //destination pin
-//        var objectAnnotationDest = MKPointAnnotation()
-//        objectAnnotationDest.coordinate = entry!.destinationCoordinates
-//        objectAnnotationDest.title = "Destino"
-//        self.map.addAnnotation(objectAnnotationDest)
-        
-        //origin pin
-        //var objectAnnotationOri = MKPointAnnotation()
         let objectAnnotationOri = ColorPointAnnotation(pinColor: UIColor.redColor())
         objectAnnotationOri.coordinate = entry!.originCoordinates
         objectAnnotationOri.title = "Origen"
@@ -68,7 +60,6 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         // 4.
         let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
         let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        
         // 7.
         let directionRequest = MKDirectionsRequest()
         directionRequest.source = sourceMapItem
@@ -77,9 +68,7 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         
         // Calculate the direction
         let directions = MKDirections(request: directionRequest)
-        
-        
-        
+
         // 8.
         directions.calculateDirectionsWithCompletionHandler {
             (response, error) -> Void in
@@ -112,6 +101,9 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         navigationItem.backBarButtonItem = backItem
         if let offerViewController = segue.destinationViewController as? OfferViewController{
             offerViewController.entry = self.entry
+        }
+        if let offersListViewController = segue.destinationViewController as? OffersListViewController{
+            offersListViewController.entry = self.entry
         }
     }
     
@@ -170,33 +162,6 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    
-//    class ColorPointAnnotation: MKPointAnnotation {
-//        var pinColor: UIColor
-//        
-//        init(pinColor: UIColor) {
-//            self.pinColor = pinColor
-//            super.init()
-//        }
-//    }
-//    
-//    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation {
-//            return nil
-//        }
-//        let reuseId = "pin"
-//        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-//        if pinView == nil {
-//            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-//            let colorPointAnnotation = annotation as! ColorPointAnnotation
-//            pinView?.pinTintColor = colorPointAnnotation.pinColor
-//        }
-//        else {
-//            pinView?.annotation = annotation
-//        }
-//        
-//        return pinView
-//    }
 
 }
 

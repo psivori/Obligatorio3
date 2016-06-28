@@ -23,13 +23,6 @@ class OfferDetailsViewController: UIViewController {
     
         var refreshAlert = UIAlertController(title: "", message: "¿Aceptar la oferta?", preferredStyle: UIAlertControllerStyle.Alert)
         refreshAlert.addAction(UIAlertAction(title: "Sí", style: .Default, handler: { (action: UIAlertAction!) in
-//            //Saving the offer into Firebase
-//            var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
-//            var offersRef = myRootRef.childByAppendingPath("offers")
-//            var offer = ["budget": self.budget.text, "description": self.txtDescription.text]
-//            let offerRef = offersRef.childByAutoId()
-//            offerRef.setValue(offer)
-//            
             let alert2 = UIAlertController(title: nil, message: "Oferta Aceptada.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
                 navigationController?.popToRootViewControllerAnimated(true)
@@ -45,10 +38,9 @@ class OfferDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        budgetLabel.text = entry!.price
+        budgetLabel.text = entry!.budget
         nombreLabel.text = entry!.name
-        lastNameLabel.text = entry!.lastName
-        detailsLabel.text = entry!.details
+        detailsLabel.text = entry!.description
         
         //Border of txtDescription
         self.detailsLabel!.layer.borderWidth = 1

@@ -44,7 +44,7 @@ class OfferViewController: UIViewController {
                 //Saving the offer into Firebase
                 var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
                 var offersRef = myRootRef.childByAppendingPath("offers")
-                var offer = ["budget": self.budget.text, "description": self.txtDescription.text]
+                var offer = ["budget": self.budget.text, "description": self.txtDescription.text, "entryId": self.entry.id]
                 let offerRef = offersRef.childByAutoId()
                 offerRef.setValue(offer)
                 
