@@ -34,17 +34,12 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func login(sender: AnyObject) {
-        
-        //var flag : Bool = false
         var cont : Int = 0
         var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/users")
         myRootRef.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
-            
             cont += 1
             if var mail = snapshot.value["user"] as? String {
-                
-                if(mail == self.emailInput.text)
-                {
+                if(mail == self.emailInput.text) {
                     self.currentUser = mail
                     self.currentPassword = snapshot.value["password"] as? String
                     self.currentUserType = snapshot.value["tipo"] as? Int

@@ -21,7 +21,7 @@ class OffersListViewController: UIViewController, UITableViewDelegate, UIScrollV
     
     func loadOffers() {
         var ref = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/offers")
-        ref.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
+        ref.queryOrderedByChild("entryId").observeEventType(.ChildAdded, withBlock: { snapshot in
             if var entryId = snapshot.value["entryId"] as? String {
                 if entryId == self.entry.id {
                     var budget = snapshot.value["budget"] as! String
