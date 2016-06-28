@@ -8,6 +8,7 @@ class OffersListViewController: UIViewController, UITableViewDelegate, UIScrollV
     var entries = [EntryOffer]()
     var selectedEntry: EntryOffer?
     var entry: Entry!
+    @IBOutlet weak var offersTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class OffersListViewController: UIViewController, UITableViewDelegate, UIScrollV
                     var name = self.defaults.stringForKey("Name")!
                     var offer = EntryOffer(description : des, name : name, budget : budget)
                     self.entries.append(offer)
-                    //self.tableView.reloadData()
+                    self.offersTable.reloadData()
                 }
             }
         })

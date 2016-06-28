@@ -707,6 +707,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ofertas" id="IQA-5w-VCw"/>
                     <connections>
+                        <outlet property="offersTable" destination="cuU-TV-4zM" id="QGX-ZC-flK"/>
                         <segue destination="Doe-vj-jCj" kind="show" identifier="showOfferDetails" id="c8W-iR-dHh"/>
                     </connections>
                 </viewController>
