@@ -8,10 +8,12 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class OfferDetailsViewController: UIViewController {
     
-    var entry: EntryOffer!
+    var offer: EntryOffer!
+    var entry: Entry!
     let defaults = NSUserDefaults.standardUserDefaults()
    
     @IBOutlet weak var budgetLabel: UILabel!
@@ -22,9 +24,15 @@ class OfferDetailsViewController: UIViewController {
     
         var refreshAlert = UIAlertController(title: "", message: "¿Aceptar la oferta?", preferredStyle: UIAlertControllerStyle.Alert)
         refreshAlert.addAction(UIAlertAction(title: "Sí", style: .Default, handler: { (action: UIAlertAction!) in
-            let alert2 = UIAlertController(title: nil, message: "Oferta Aceptada.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            //Updating the entry on Firebase
+            var myEntryRoot = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/entries/" + self.entry.id + "/state")
+            myEntryRoot.setValue("Finalizada")
+            
+
+            let alert2 = UIAlertController(title: nil, message: "Oferta aceptada.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
-                navigationController?.popToRootViewControllerAnimated(true)
+                self.navigationController?.popToRootViewControllerAnimated(true)
             }
             alert2.addAction(okAction)
             self.presentViewController(alert2, animated: true, completion: nil)
@@ -37,9 +45,9 @@ class OfferDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        budgetLabel.text = entry!.budget
-        nombreLabel.text = entry!.name
-        detailsLabel.text = entry!.description
+        budgetLabel.text = offer!.budget
+        nombreLabel.text = offer!.name
+        detailsLabel.text = offer!.description
         
         //Border of txtDescription
         self.detailsLabel!.layer.borderWidth = 1

@@ -72,7 +72,9 @@ class OffersListViewController: UIViewController, UITableViewDelegate, UIScrollV
         navigationItem.backBarButtonItem = backItem
         if let offerDetailsViewController = segue.destinationViewController as? OfferDetailsViewController
         {
-            offerDetailsViewController.entry = selectedEntry!
+            offerDetailsViewController.entry = entry!
+            offerDetailsViewController.offer = selectedEntry!
+
         }
     }
     
