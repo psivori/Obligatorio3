@@ -26,9 +26,9 @@ class OfferDetailsViewController: UIViewController {
         refreshAlert.addAction(UIAlertAction(title: "Sí", style: .Default, handler: { (action: UIAlertAction!) in
             
             //Updating the entry on Firebase
-            var myEntryRoot = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/entries/" + self.entry.id + "/state")
-            myEntryRoot.setValue("Finalizada")
-            
+            var myEntryRoot = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/entries/" + self.entry.id)
+            myEntryRoot.childByAppendingPath("state").setValue("Finalizada")
+            var courierEmail = myEntryRoot.childByAppendingPath("courierEmail").setValue(self.offer.email);
 
             let alert2 = UIAlertController(title: nil, message: "Oferta aceptada.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in

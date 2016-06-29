@@ -48,13 +48,13 @@ class LoginViewController: UIViewController {
                     if(self.currentUserType == 1 && self.currentPassword == self.passwordInput.text!){
                         self.defaults.setObject(self.currentUser, forKey: "Email")
                         self.defaults.setObject(self.currentPassword, forKey: "Password")
-                        self.defaults.setBool(true, forKey: "Courier")
+                        self.defaults.setBool(false, forKey: "Courier")
                         self.defaults.setObject(name, forKey: "Name")
                         self.performSegueWithIdentifier("toHome", sender: nil)
                     }else if(self.currentUserType == 2 && self.currentPassword == self.passwordInput.text!){
                         self.defaults.setObject(self.currentUser, forKey: "Email")
                         self.defaults.setObject(self.currentPassword, forKey: "Password")
-                        self.defaults.setBool(false, forKey: "Courier")
+                        self.defaults.setBool(true, forKey: "Courier")
                         self.defaults.setObject(name, forKey: "Name")
                         self.performSegueWithIdentifier("toHome", sender: nil)
             
