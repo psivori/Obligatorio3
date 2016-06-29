@@ -19,7 +19,7 @@ class OfferViewController: UIViewController {
     @IBOutlet weak var entryOrigin: UILabel!
     @IBOutlet weak var entryDestination: UILabel!
     @IBOutlet weak var entryDate: UILabel!
-   
+    let defaults = NSUserDefaults.standardUserDefaults()   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class OfferViewController: UIViewController {
                 //Saving the offer into Firebase
                 var myRootRef = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/")
                 var offersRef = myRootRef.childByAppendingPath("offers")
-                var offer = ["budget": self.budget.text, "description": self.txtDescription.text, "entryId": self.entry.id]
+                var offer = ["budget": self.budget.text, "description": self.txtDescription.text, "entryId": self.entry.id, "userName": self.defaults.stringForKey("Name")!, "userEmail": self.defaults.stringForKey("Email")!]
                 let offerRef = offersRef.childByAutoId()
                 offerRef.setValue(offer)
                 

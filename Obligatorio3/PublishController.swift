@@ -116,28 +116,18 @@ class PublishController: UIViewController, UITextFieldDelegate , MKMapViewDelega
     }
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        
         let datePickerView:UIDatePicker = UIDatePicker()
-        
         datePickerView.datePickerMode = UIDatePickerMode.Date
-        
         textField.inputView = datePickerView
-        
         datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        
         return true
     }
     
     func datePickerValueChanged(sender:UIDatePicker) {
-        
         let dateFormatter = NSDateFormatter()
-        
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        
         self.dateTextField.text = dateFormatter.stringFromDate(sender.date)
-        
     }
     
     override func viewDidLoad() {
