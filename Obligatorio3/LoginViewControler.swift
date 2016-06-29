@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         var email = defaults.stringForKey("Email")
         var password = defaults.stringForKey("Password")
         if email != nil && password != nil{
-            self.performSegueWithIdentifier("toHome", sender: nil)
+            //self.performSegueWithIdentifier("toHome", sender: nil)
         }
     }
 
