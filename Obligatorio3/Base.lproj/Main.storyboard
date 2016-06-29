@@ -61,6 +61,9 @@
                                     <outlet property="delegate" destination="Knj-Gg-VUY" id="ONY-aG-UQS"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PICKAPP" translatesAutoresizingMaskIntoConstraints="NO" id="8cs-r9-mZN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -271,6 +274,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="madera" translatesAutoresizingMaskIntoConstraints="NO" id="Zfe-Ck-Map">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fem-qj-ST0">
                                 <rect key="frame" x="20" y="84" width="47" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -319,29 +325,32 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="l2D-yW-xbs">
-                                <rect key="frame" x="20" y="232" width="560" height="304"/>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fecha:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-AB-onT">
                                 <rect key="frame" x="20" y="160" width="50" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="l2D-yW-xbs">
+                                <rect key="frame" x="20" y="232" width="560" height="304"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Na9-GV-ZOa" firstAttribute="top" secondItem="Fem-qj-ST0" secondAttribute="bottom" constant="15" id="2UV-ss-Xbx"/>
                             <constraint firstItem="l2D-yW-xbs" firstAttribute="leading" secondItem="tDU-eg-YxK" secondAttribute="leading" constant="20" id="4nK-11-uzr"/>
                             <constraint firstItem="BCu-1E-Ul5" firstAttribute="top" secondItem="Na9-GV-ZOa" secondAttribute="bottom" constant="2" id="5mC-ky-Foz"/>
+                            <constraint firstAttribute="trailing" secondItem="Zfe-Ck-Map" secondAttribute="trailing" id="7Ay-Mq-XTw"/>
                             <constraint firstItem="4MW-Wh-uqc" firstAttribute="top" secondItem="8Ip-AB-onT" secondAttribute="bottom" constant="2" id="7nn-bq-rrX"/>
                             <constraint firstItem="8Ip-AB-onT" firstAttribute="top" secondItem="BCu-1E-Ul5" secondAttribute="bottom" constant="2" id="8yB-sI-gr9"/>
                             <constraint firstItem="BCu-1E-Ul5" firstAttribute="leading" secondItem="tDU-eg-YxK" secondAttribute="leading" constant="20" id="9qy-xJ-lUU"/>
                             <constraint firstItem="baf-uR-0xT" firstAttribute="leading" secondItem="Na9-GV-ZOa" secondAttribute="trailing" constant="2" id="BwJ-1e-8Ln"/>
                             <constraint firstItem="zzz-mc-YrI" firstAttribute="top" secondItem="4MW-Wh-uqc" secondAttribute="bottom" constant="1" id="DAI-wr-3Vg"/>
+                            <constraint firstItem="Zfe-Ck-Map" firstAttribute="top" secondItem="tDU-eg-YxK" secondAttribute="top" id="E9X-fs-nVQ"/>
                             <constraint firstItem="Fem-qj-ST0" firstAttribute="leading" secondItem="tDU-eg-YxK" secondAttribute="leading" constant="20" id="J2p-pG-eCL"/>
                             <constraint firstItem="brz-0f-znu" firstAttribute="top" secondItem="8Ip-AB-onT" secondAttribute="top" id="Q6s-ji-OrY"/>
                             <constraint firstItem="zmd-KX-ty4" firstAttribute="top" secondItem="l2D-yW-xbs" secondAttribute="bottom" constant="20" id="RAq-Yd-1wn"/>
+                            <constraint firstItem="zmd-KX-ty4" firstAttribute="top" secondItem="Zfe-Ck-Map" secondAttribute="bottom" id="UEd-GI-Va4"/>
                             <constraint firstItem="4MW-Wh-uqc" firstAttribute="leading" secondItem="tDU-eg-YxK" secondAttribute="leading" constant="20" id="YiX-sy-YlU"/>
                             <constraint firstItem="zzz-mc-YrI" firstAttribute="leading" secondItem="tDU-eg-YxK" secondAttribute="leading" constant="20" id="ZAY-14-RZe"/>
                             <constraint firstItem="TJb-8s-fF4" firstAttribute="top" secondItem="BCu-1E-Ul5" secondAttribute="top" id="aoe-l3-xIx"/>
@@ -356,6 +365,7 @@
                             <constraint firstItem="Na9-GV-ZOa" firstAttribute="leading" secondItem="tDU-eg-YxK" secondAttribute="leading" constant="20" id="ji2-eS-84c"/>
                             <constraint firstItem="brz-0f-znu" firstAttribute="leading" secondItem="8Ip-AB-onT" secondAttribute="trailing" constant="3" id="mJQ-j7-KC1"/>
                             <constraint firstItem="TJb-8s-fF4" firstAttribute="leading" secondItem="BCu-1E-Ul5" secondAttribute="trailing" constant="3" id="nyQ-t9-nma"/>
+                            <constraint firstItem="Zfe-Ck-Map" firstAttribute="leading" secondItem="tDU-eg-YxK" secondAttribute="leading" id="x6s-7v-Sqo"/>
                             <constraint firstItem="Fem-qj-ST0" firstAttribute="top" secondItem="mlh-Gp-WeD" secondAttribute="bottom" constant="20" id="yIB-nW-C5O"/>
                         </constraints>
                         <variation key="default">
@@ -534,10 +544,10 @@
                                 <exclude reference="YcR-qX-ghq"/>
                                 <exclude reference="pWG-Hu-2tq"/>
                                 <exclude reference="qTJ-WT-9R4"/>
-                                <exclude reference="SJe-Tz-n5W"/>
-                                <exclude reference="XI7-Ok-rRg"/>
                                 <exclude reference="eWN-de-sDB"/>
                                 <exclude reference="x4n-KC-pb1"/>
+                                <exclude reference="SJe-Tz-n5W"/>
+                                <exclude reference="XI7-Ok-rRg"/>
                                 <exclude reference="iAU-ow-nF3"/>
                                 <exclude reference="y87-mo-au9"/>
                                 <exclude reference="tWP-wF-zUo"/>
@@ -893,6 +903,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="PICKAPP" width="1280" height="804"/>
+        <image name="madera" width="1600" height="1277"/>
         <image name="pickApp3" width="250" height="200"/>
     </resources>
 </document>
