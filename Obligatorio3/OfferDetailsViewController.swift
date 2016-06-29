@@ -16,7 +16,6 @@ class OfferDetailsViewController: UIViewController {
    
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var nombreLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var detailsLabel: UITextView!
     
     @IBAction func AceptOffer(sender: AnyObject) {
