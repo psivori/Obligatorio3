@@ -28,7 +28,7 @@ class OffersListViewController: UIViewController, UITableViewDelegate, UIScrollV
                     var budget = snapshot.value["budget"] as! String
                     var des = snapshot.value["description"] as! String
                     var name = snapshot.value["userName"] as! String
-                    var email = snapshot.value["email"] as! String
+                    var email = snapshot.value["userEmail"] as! String
                     var offer = EntryOffer(description : des, name : name, budget : budget, email : email)
                     self.entries.append(offer)
                     self.offersTable.reloadData()
