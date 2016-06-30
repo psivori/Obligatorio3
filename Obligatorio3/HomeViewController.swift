@@ -107,6 +107,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
         let entry = entries[indexPath.row]
         cell.titleLabel.text = entry.title
         cell.stateLabel.text = " " + entry.state + " "
+        
         return cell
     }
     
