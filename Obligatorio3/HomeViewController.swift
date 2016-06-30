@@ -19,12 +19,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
     var entries = [Entry]()
     var selectedEntry: Entry?
     var email : String!
-    var courier : Bool!
+    var courier : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //shows or hides de publish button, according to profile user
         email = defaults.stringForKey("Email")
-        courier = !defaults.boolForKey("Courier")
+        courier = defaults.boolForKey("Courier")
         if !courier {
             navigationItem.rightBarButtonItems = [publishButton]
         } else {
@@ -39,10 +40,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
     }
     
     func loadEntries() {
+        var myOffers : [String] = []
+        if  self.courier {
+            var ref = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/offers")
+            ref.queryOrderedByChild("userEmail").observeEventType(.ChildAdded, withBlock: { snapshot in
+                if var userEmail = snapshot.value["userEmail"] as? String {
+                    if userEmail == self.email {
+                        var entryKey = snapshot.value["entryId"] as? String
+                        myOffers.append(entryKey!)
+                    }
+                }
+            })
+        }
+
         var ref = Firebase(url:"https://pickapp-9ad8b.firebaseio.com/entries")
         ref.queryOrderedByChild("user").observeEventType(.ChildAdded, withBlock: { snapshot in
             if var user = snapshot.value["user"] as? String {
-                //if courier || user == self.email {
+                if  self.courier || user == self.email  {
                     var tit = snapshot.value["title"] as! String
                     var des = snapshot.value["description"] as? String
                     var dte = snapshot.value["date"] as? String
@@ -51,13 +65,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
                     var originCoordLat = Double (snapshot.value["originCoordLat"] as! String)
                     var originCoordLng = Double (snapshot.value["originCoordLng"] as! String)
                     var state = snapshot.value["state"] as! String
+                    if myOffers.contains(snapshot.key as! String){
+                        if (state == "Finalizada" && snapshot.value["courierEmail"] as! String == self.email){
+                            state = "Aceptada"
+                        }
+                        if (state == "Pendiente" && snapshot.value["courierEmail"] == nil){
+                            state = "Postulado"
+                        }
+                        if (state == "Pendiente" && snapshot.value["courierEmail"] != nil){
+                            state = "Rechazado"
+                        }
+                    }
                     var id = snapshot.key as! String
                     let sourceLocation = CLLocationCoordinate2D(latitude: originCoordLat!, longitude: originCoordLng!)
                     let destinationLocation = CLLocationCoordinate2D(latitude: destinationCoordLat! ,longitude: destinationCoordLng!)
                     var entry = Entry(title: tit, description : des!, originCoordinates : sourceLocation, destinationCoordinates :destinationLocation, date : dte!, state : state, id : id)
                     self.entries.append(entry)
                     self.tableView.reloadData()
-                //}
+                }
             }
         })
     }
