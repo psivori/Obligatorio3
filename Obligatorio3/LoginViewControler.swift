@@ -5,6 +5,7 @@
 //  Created by Administrador on 15/4/16.
 //  Copyright © 2016 MICHO. All rights reserved.
 //usuario@ucu.com
+//fletero@ucu.com
 import UIKit
 import IQKeyboardManagerSwift
 import Firebase
@@ -29,7 +30,7 @@ class LoginViewController: UIViewController {
         var email = defaults.stringForKey("Email")
         var password = defaults.stringForKey("Password")
         if email != nil && password != nil{
-            self.performSegueWithIdentifier("toHome", sender: nil)
+           // self.performSegueWithIdentifier("toHome", sender: nil)
         }
     }
 

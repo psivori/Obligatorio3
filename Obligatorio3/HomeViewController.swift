@@ -66,14 +66,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UIScrollViewDel
                     var originCoordLng = Double (snapshot.value["originCoordLng"] as! String)
                     var state = snapshot.value["state"] as! String
                     if myOffers.contains(snapshot.key as! String){
-                        if (state == "Finalizada" && snapshot.value["courierEmail"] as! String == self.email){
-                            state = "Aceptada"
-                        }
                         if (state == "Pendiente" && snapshot.value["courierEmail"] == nil){
                             state = "Postulado"
                         }
-                        if (state == "Pendiente" && snapshot.value["courierEmail"] != nil){
+                        else if (state == "Pendiente" && snapshot.value["courierEmail"] != nil){
                             state = "Rechazado"
+                        }
+                        else if (state == "Finalizada" && snapshot.value["courierEmail"] as! String == self.email){
+                            state = "Aceptada"
                         }
                     }
                     var id = snapshot.key as! String
