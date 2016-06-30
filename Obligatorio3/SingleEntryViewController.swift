@@ -26,9 +26,13 @@ class SingleEntryViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         var canOffer = defaults.boolForKey("Courier")
-        if canOffer {
-            navigationItem.rightBarButtonItems = [offerButton]
-        } else {
+        if canOffer{
+            if entry.state == "Pendiente"{
+                navigationItem.rightBarButtonItems = [offerButton]
+            }else{
+                navigationItem.rightBarButtonItems = []
+            }
+        } else{
             navigationItem.rightBarButtonItems = [showOffers]
         }
         
